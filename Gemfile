@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby '2.1.1'
 
 # Core
 gem 'rails', 							'4.1.0'
@@ -9,6 +10,7 @@ gem 'sidekiq',       			'~> 3.0.0'
 gem 'figaro',        			'~> 0.7.0'
 
 # Auth
+gem 'sorcery',						github: 'NoamB/sorcery'
 gem 'cancancan',     			'~> 1.7'
 
 # Assets
