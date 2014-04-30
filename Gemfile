@@ -5,6 +5,7 @@ ruby '2.1.1'
 gem 'rails', 							'4.1.0'
 gem 'feedjira',						'1.2.0'
 gem 'sidekiq',       			'~> 3.0.0'
+gem 'pg',            			'~> 0.17.1'
 
 # Config
 gem 'figaro',        			'~> 0.7.0'
@@ -21,11 +22,11 @@ gem 'jquery-rails',				'~> 3.1.0'
 gem 'uglifier', 					'>= 1.3.0'
 
 group :doc do
-	gem 'sdoc', 				'~> 0.4.0'
+	gem 'sdoc', 						'~> 0.4.0'
 end
 
 group :development do
 	gem 'spring'
-	gem 'better_errors',			'~> 1.0.1'
-	gem 'binding_of_caller',	'~> 0.7.2'
+	gem 'better_errors',		'~> 1.0.1'
+	gem 'binding_of_caller','~> 0.7.2'
 end
