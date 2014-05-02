@@ -1,6 +1,6 @@
 # Available submodules are: :user_activation, :http_basic_auth, :remember_me,
 # :reset_password, :session_timeout, :brute_force_protection, :activity_logging, :external
-Rails.application.config.sorcery.submodules = [:remember_me, :reset_password, :user_activation]
+Rails.application.config.sorcery.submodules = [:remember_me, :reset_password, :user_activation, :session_timeout]
 
 Rails.application.config.sorcery.configure do |config|
   # -- core --
