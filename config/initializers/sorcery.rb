@@ -167,7 +167,7 @@ Rails.application.config.sorcery.configure do |config|
     # change default crypted_password attribute.
     # Default: `:crypted_password`
     #
-    # user.crypted_password_attribute_name =
+    user.crypted_password_attribute_name = :password
 
 
     # what pattern to use to join the password with the salt
@@ -253,7 +253,7 @@ Rails.application.config.sorcery.configure do |config|
     # your mailer class. Required.
     # Default: `nil`
     #
-    # user.user_activation_mailer =
+    user.user_activation_mailer = ActionMailer
 
 
     # when true sorcery will not automatically
