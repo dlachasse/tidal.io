@@ -11,7 +11,7 @@ gem 'pg',            				'~> 0.17.1'
 gem 'figaro',        				'~> 0.7.0'
 
 # Auth
-gem 'sorcery',							github: 'NoamB/sorcery'
+gem 'sorcery',							'0.8.5'
 gem 'cancancan',     				'~> 1.7'
 
 # Assets
