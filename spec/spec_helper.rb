@@ -1,6 +1,7 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+require 'email_spec'
 require 'database_cleaner'
 require 'factory_girl_rails'
 
@@ -12,6 +13,8 @@ RSpec.configure do |config|
   config.include Sorcery::TestHelpers::Rails
   config.include FactoryGirl::Syntax::Methods
   config.include Capybara::DSL
+  config.include EmailSpec::Helpers
+  config.include EmailSpec::Matchers
   config.include Rails.application.routes.url_helpers
 
   config.use_transactional_fixtures = false
