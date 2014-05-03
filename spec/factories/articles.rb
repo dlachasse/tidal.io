@@ -1,12 +1,16 @@
-# Read about factories at https://github.com/thoughtbot/factory_girl
+require 'faker'
 
 FactoryGirl.define do
   factory :article do
-    title "MyText"
-    permalink "MyText"
-    body "MyText"
-    published "2014-05-03 09:53:31"
-    is_read false
-    feed_id 1
+    title 		{ Faker::Lorem.words(num = 12).join(" ") }
+    permalink { Faker::Internet.url }
+    body 			{ Faker::Lorem.paragraphs(paragraph_count = 4).join(" ") }
+    published Time.now
+    is_read 	false
+    feed
+
+    factory :read_article do
+    	is_read true
+    end
   end
 end

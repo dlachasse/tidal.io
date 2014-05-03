@@ -3,6 +3,8 @@ require 'spec_helper'
 describe Subscription do
 
 	it 'has a valid factory' do
+		subscript = build(:subscription)
+		p "SUBSCRIPTION: #{subscript}"
 		expect(build(:subscription)).to be_valid
 	end
 

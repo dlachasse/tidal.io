@@ -1,5 +1,12 @@
 require 'spec_helper'
 
 describe Article do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+	it 'has a valid factory' do
+		expect(build(:article)).to be_valid
+	end
+
+	it { should belong_to(:feed) }
+	it { should validate_presence_of(:feed_id) }
+
 end

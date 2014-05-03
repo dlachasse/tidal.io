@@ -10,7 +10,7 @@ describe User do
   end
 
   it { should validate_presence_of :email }
-  it { should have_many :subscriptions }
+  it { should have_many(:feeds).through(:subscriptions) }
 
   it "is invalid without email" do
   	expect(build(:invalid_user)).to_not be_valid

@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   validates :email, presence: true
 
   # ASSOCIATIONS
+  has_many :feeds, through: :subscriptions
   has_many :subscriptions
 
 end

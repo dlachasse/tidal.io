@@ -6,4 +6,5 @@ class Subscription < ActiveRecord::Base
 
 	# ASSOCIATIONS
 	belongs_to :user
+	belongs_to :feed
 end
