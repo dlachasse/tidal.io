@@ -11,10 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140502061146) do
+ActiveRecord::Schema.define(version: 20140503163354) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "subscriptions", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "feed_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "subscriptions", ["user_id", "feed_id"], name: "index_subscriptions_on_user_id_and_feed_id", unique: true, using: :btree
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -27,8 +36,9 @@ ActiveRecord::Schema.define(version: 20140502061146) do
     t.string   "activation_state"
     t.string   "activation_token"
     t.datetime "activation_token_expires_at"
-    t.string   "password"
+    t.string   "crypted_password"
     t.string   "password_confirmation"
+    t.string   "salt"
   end
 
   add_index "users", ["activation_token"], name: "index_users_on_activation_token", using: :btree
