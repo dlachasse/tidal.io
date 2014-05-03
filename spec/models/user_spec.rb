@@ -5,6 +5,10 @@ describe User do
   	expect(build(:user)).to be_valid
   end
 
+  it "sends activation email upon creation" do
+    expect { create(:user) }.to change { ActionMailer::Base.deliveries.count }.by(1)
+  end
+
   it 'has a valid factory with associations' do
     expect(build(:user_with_subscriptions)).to be_valid
   end
