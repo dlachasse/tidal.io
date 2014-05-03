@@ -3,6 +3,7 @@ class User < ActiveRecord::Base
 
   # VALIDATIONS
   validates :email, presence: true
+  validates :password, presence: true, confirmation: true, length: { minimum: 5 }
 
   # ASSOCIATIONS
   has_many :feeds, through: :subscriptions
