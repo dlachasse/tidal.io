@@ -8,7 +8,10 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :sessions, except: [:index, :edit, :update]
+  get 'login', to: 'sessions#new', as: :login
+  resources :sessions, except: [:index, :edit, :update, :new]
+
+  resources :feeds, except: [:index, :edit, :update]
 
   root 'users#new'
 end
