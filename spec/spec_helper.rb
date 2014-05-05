@@ -15,6 +15,7 @@ RSpec.configure do |config|
   config.include Capybara::DSL
   config.include EmailSpec::Helpers
   config.include EmailSpec::Matchers
+  config.include Requests::JsonHelpers, :type => :controller
   config.include Rails.application.routes.url_helpers
 
   config.use_transactional_fixtures = false
