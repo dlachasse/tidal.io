@@ -7,5 +7,6 @@ describe Feed do
 	end
 
 	it { should have_many(:articles) }
+	it { should validate_presence_of(:url) }
 
 end
