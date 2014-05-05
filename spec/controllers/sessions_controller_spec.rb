@@ -12,32 +12,18 @@ describe SessionsController do
 
   end
 
-  # NO PROPER WAY TO CURRENTLY TEST SPECIFIC RESPONSE CODES
-  # context 'POST#create' do
-    # it '200 success with proper login' do
+  context 'POST#create' do
+    # it 'returns http success' do
     #   expect {
-    #     post :create, session: { email: user.email, password: user.password }
-    #   }.response_status.to eq '200'
+    #     post :create, session: attributes_for(:user)
+    #     }.(response).to be_success
     # end
 
-    # it '401 error with incorrect credentials' do
+    # it 'rerenders new template on unsuccessful login' do
     #   expect {
-    #     post :create, session: { email: 'wrong', password: 'nope' }
-    #   }.response_status.to eq '401'
+    #     post :create, session: attributes_for(:user, password: 'super password')
+    #   }.to render_template :new
     # end
-  # end
-
-  context 'DELETE#destroy' do
-
-    before :each do
-      login_user(user)
-    end
-
-    it 'returns http success' do
-      expect {
-        delete :destroy, id: user
-      }.to be_success
-    end
   end
 
 end
