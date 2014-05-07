@@ -7,16 +7,15 @@ class Feed < ActiveRecord::Base
 	has_many :users, through: :subscriptions, as: :subscribers
 	has_many :articles
 
-	# CALLBACKS
-	before_save :pull_down_feed
+	after_create :pull_down_feed
+	before_save :retrieve_name
 
 	def pull_down_feed
-		@feed = Feedjira::Feed.fetch_and_parse(self.url)
-		assign_name
+		ArticleFetcherWorker.perform_async(self.url)
 	end
 
-	def assign_name
-		self.name = @feed.title
+	def retrieve_name
+		self.name = FeedParser.retrieve_name(self.url)
 	end
 
 end
