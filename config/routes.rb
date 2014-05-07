@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
 
   get 'signup', to: 'users#new', as: :signup
@@ -12,6 +13,8 @@ Rails.application.routes.draw do
   resources :sessions, except: [:index, :edit, :update, :new]
 
   resources :feeds, except: [:index, :edit, :update]
+
+  mount Sidekiq::Web => '/sidekiq'
 
   root 'users#new'
 end
