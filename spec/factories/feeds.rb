@@ -3,7 +3,7 @@ require 'faker'
 FactoryGirl.define do
   factory :feed do
     name 	{ Faker::Lorem.words(num = 7).join(" ") }
-    url 	{ Faker::Internet.url }
+    url 	"https://github.com/blog/drinkup.atom"
 
     factory :feed_with_articles do
 	    ignore do

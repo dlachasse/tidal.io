@@ -18,7 +18,7 @@ describe FeedsController do
 
 		it 'creates new feed' do
 			expect {
-				post :create, feed: { url: 'http://www.site.com' }
+				post :create, feed: { url: 'https://github.com/blog/drinkup.atom' }
 			}.to change(Feed, :count).by(1)
 		end
 
