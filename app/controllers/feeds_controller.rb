@@ -11,7 +11,7 @@ class FeedsController < ApplicationController
   end
 
   def create
-  	@feed = Feed.new(feed_params)
+  	@feed = Feed.where(url: params[:feed][:url]).first_or_create(url: params[:feed][:url])
     location = @feed.save ? feed_path(@feed) : new_feed_path
     respond_with @feed, location: location
   end
