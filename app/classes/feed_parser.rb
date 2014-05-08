@@ -16,6 +16,11 @@ class FeedParser
 		fetch(url)
 		@feed ||= load_feed(url)
 		@feedjira.entries.map { |article|	check_and_save_article article }
+		set_feed_update
+	end
+
+	def self.set_feed_update
+		@feed.update(last_checked: Time.now)
 	end
 
 	def self.check_and_save_article article
