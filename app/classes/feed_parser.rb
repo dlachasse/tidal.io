@@ -14,7 +14,7 @@ class FeedParser
 
 	def self.retrieve_entries url
 		fetch(url)
-		@feed ||= load_feed(url)
+		load_feed(url)
 		@feedjira.entries.map { |article|	check_and_save_article article }
 		set_feed_update
 	end
@@ -24,9 +24,10 @@ class FeedParser
 	end
 
 	def self.check_and_save_article article
-		Article.where(permalink: article.url).first_or_create!(
+		article_url = validate_domain(article.url)
+		Article.where(permalink: article_url).first_or_create!(
 			title: article.title,
-			permalink: article.url,
+			permalink: article_url,
 			body: article.content,
 			published: article.published,
 			feed_id: @feed.id)
@@ -37,4 +38,11 @@ class FeedParser
 		@feedjira.title
 	end
 
+	def self.validate_domain url
+		if url =~ /(http|https):\/\/.*/
+			url
+		else
+			"#{@feed.url}#{url}"
+		end
+	end
 end
