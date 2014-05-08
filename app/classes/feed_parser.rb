@@ -28,7 +28,7 @@ class FeedParser
 		Article.where(permalink: article_url).first_or_create!(
 			title: article.title,
 			permalink: article_url,
-			body: article.content,
+			body: article.content || article.summary,
 			published: article.published,
 			feed_id: @feed.id)
 	end
