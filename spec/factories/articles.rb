@@ -6,7 +6,6 @@ FactoryGirl.define do
     permalink  { Faker::Internet.url }
     body 		   { Faker::Lorem.paragraphs(paragraph_count = 4).join(" ") }
     published  Time.now
-    is_read 	 false
     feed
 
     factory :read_article do
