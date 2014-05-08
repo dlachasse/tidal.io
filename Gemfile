@@ -3,9 +3,12 @@ ruby '2.1.1'
 
 # Core
 gem 'rails', 								'4.1.0'
-gem 'sidekiq',              '~> 3.0.0'
 gem 'pg',                   '~> 0.17.1'
 gem 'sinatra',              '>= 1.3.0', :require => nil
+
+# Scheduling/Queuing
+gem 'whenever',             '0.9.2'
+gem 'sidekiq',              '~> 3.0.0'
 
 # RSS Related
 gem 'feedjira',							'1.2.0'
