@@ -1,4 +1,5 @@
 class FeedsController < ApplicationController
+  after_action :subscribe_user, only: [:create]
   respond_to :json, :html
 
   def new
@@ -24,6 +25,10 @@ class FeedsController < ApplicationController
 
   def feed_params
     params.require(:feed).permit(:url)
+  end
+
+  def subscribe_user
+    Subscription.create!(feed_id: @feed.id, user_id: session[:user_id])
   end
 
 end
