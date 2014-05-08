@@ -5,6 +5,7 @@ ruby '2.1.1'
 gem 'rails', 								'4.1.0'
 gem 'pg',                   '~> 0.17.1'
 gem 'sinatra',              '>= 1.3.0', :require => nil
+gem 'httparty',             '0.13.1'
 
 # Scheduling/Queuing
 gem 'whenever',             '0.9.2'
