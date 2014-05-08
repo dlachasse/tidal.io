@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140508024624) do
+ActiveRecord::Schema.define(version: 20140508061149) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20140508024624) do
     t.string   "name"
     t.text     "url"
     t.datetime "last_checked"
+    t.text     "favicon"
   end
 
   create_table "subscriptions", force: true do |t|
