@@ -18,8 +18,16 @@ describe FeedsController do
 
 		it 'creates new feed' do
 			expect {
+				session[:user_id] = 1
 				post :create, feed: { url: 'https://github.com/blog/drinkup.atom' }
 			}.to change(Feed, :count).by(1)
+		end
+
+		it 'subscribes user after creating' do
+			expect {
+				session[:user_id] = 1
+				post :create, feed: { url: 'https://github.com/blog/drinkup.atom' }
+			}.to change(Subscription, :count).by(1)
 		end
 
 	end
