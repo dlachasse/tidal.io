@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140507032354) do
+ActiveRecord::Schema.define(version: 20140508024624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,6 @@ ActiveRecord::Schema.define(version: 20140507032354) do
     t.text     "permalink"
     t.text     "body"
     t.datetime "published"
-    t.boolean  "is_read"
     t.integer  "feed_id"
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -31,8 +30,9 @@ ActiveRecord::Schema.define(version: 20140507032354) do
   add_index "articles", ["permalink"], name: "index_articles_on_permalink", unique: true, using: :btree
 
   create_table "feeds", force: true do |t|
-    t.string "name"
-    t.text   "url"
+    t.string   "name"
+    t.text     "url"
+    t.datetime "last_checked"
   end
 
   create_table "subscriptions", force: true do |t|
