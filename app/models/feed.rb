@@ -14,7 +14,7 @@ class Feed < ActiveRecord::Base
 	after_update :update_last_checked
 
 	# SCOPES
-	scope :requiring_update, -> { where('last_checked < ? OR last_checked IS NULL', 20.minutes.ago) }
+	scope :requiring_update, -> { where('last_checked < ? OR last_checked IS NULL', 20.minutes.ago).pluck(:url) }
 
 	def pull_down_feed
 		ArticleFetcherWorker.perform_async(self.url)
@@ -26,6 +26,10 @@ class Feed < ActiveRecord::Base
 
 	def update_last_checked
 		self.last_checked = Time.now
+	end
+
+	def self.update_feeds
+		self.requiring_update.map { |url| ArticleFetcherWorker.perform_async(url) }
 	end
 
 end
