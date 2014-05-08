@@ -8,7 +8,7 @@ class FeedsController < ApplicationController
 
   def show
     @feed = Feed.find(params[:id])
-    render :json => @feed.to_json
+    render :json => @feed.to_json(only: [:id, :name, :url])
   end
 
   def create
