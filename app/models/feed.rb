@@ -9,6 +9,7 @@ class Feed < ActiveRecord::Base
 
 	# CALLBACKS
 	before_save :retrieve_name
+	after_create :fetch_and_save_favicon
 	after_create :pull_down_feed
 	after_create :update_last_checked
 	after_update :update_last_checked
@@ -26,6 +27,10 @@ class Feed < ActiveRecord::Base
 
 	def update_last_checked
 		self.last_checked = Time.now
+	end
+
+	def fetch_and_save_favicon
+		FaviconFetcherWorker.perform_async(self.id, self.url)
 	end
 
 	def self.update_feeds
