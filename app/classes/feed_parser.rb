@@ -45,4 +45,14 @@ class FeedParser
 			"#{@feed.url}#{url}"
 		end
 	end
+
+	def self.discover_rss url
+		if Feedbag.feed? url
+			url
+		else
+			Feedbag.find url
+		end
+	rescue
+		discover_rss(url.gsub!(/http/, 'https'))
+	end
 end

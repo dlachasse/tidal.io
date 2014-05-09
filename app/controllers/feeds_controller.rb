@@ -1,5 +1,6 @@
 class FeedsController < ApplicationController
   after_action :subscribe_user, only: [:create]
+  before_action :validate_feed, only: [:create]
   respond_to :json, :html
 
   def new
@@ -12,9 +13,13 @@ class FeedsController < ApplicationController
   end
 
   def create
-  	@feed = Feed.where(url: params[:feed][:url]).first_or_create(url: params[:feed][:url])
-    location = @feed.save ? feed_path(@feed) : new_feed_path
-    respond_with @feed, location: location
+    if @rss.size > 1 || @rss.empty?
+      render :json => @rss.to_json
+    else
+  	  @feed = Feed.where(url: @rss.first).first_or_create(url: @rss.first)
+      location = @feed.save ? feed_path(@feed) : new_feed_path
+      respond_with @feed, location: location
+    end
   end
 
   def destroy
@@ -28,7 +33,13 @@ class FeedsController < ApplicationController
   end
 
   def subscribe_user
-    Subscription.create!(feed_id: @feed.id, user_id: session[:user_id])
+    if @feed
+      Subscription.create!(feed_id: @feed.id, user_id: session[:user_id])
+    end
+  end
+
+  def validate_feed
+    @rss = FeedParser.discover_rss(params[:feed][:url])
   end
 
 end
