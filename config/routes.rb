@@ -7,6 +7,7 @@ Rails.application.routes.draw do
     member do
       get :activate
     end
+    get 'feeds', to: 'subscriptions#index'
   end
 
   get 'login', to: 'sessions#new', as: :login
