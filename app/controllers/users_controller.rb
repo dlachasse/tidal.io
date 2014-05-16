@@ -25,7 +25,7 @@ class UsersController < ApplicationController
 	  else
 	    not_authenticated
 	  end
-	  respond_with @user, location: account_path(@user.id)
+	  respond_with @user, location: user_path(@user.id)
 	end
 
   private
