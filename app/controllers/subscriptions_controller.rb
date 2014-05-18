@@ -1,7 +1,7 @@
 class SubscriptionsController < ApplicationController
 	respond_to :json
+
 	def index
-		@feeds = User.find(params[:user_id]).subscriptions
-		render :json => @feeds.to_json(only: [:feed_id])
+		respond_with User.find(params[:user_id]).subscriptions
 	end
 end
