@@ -2,12 +2,11 @@ class ArticlesController < ApplicationController
 	respond_to :json
 
   def index
-  	@articles = Feed.find(params[:feed_id]).articles
-  	render :json => @articles.to_json
+  	respond_with Feed.find(params[:feed_id]).articles
+
   end
 
   def show
-  	@article = Article.find(params[:id])
-  	render :json => @article.to_json
+  	respond_with Article.find(params[:id])
   end
 end
