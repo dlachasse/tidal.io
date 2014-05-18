@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe UsersController do
+	let(:user) { create(:user) }
 
 	describe 'GET#new' do
 
@@ -13,7 +14,7 @@ describe UsersController do
 		end
 
 		it 'uses correct named route' do
-			expect(signup_path).to eq '/signup'
+			expect(new_user_path).to eq '/api/users/new'
 		end
 
 	end
@@ -26,6 +27,17 @@ describe UsersController do
 			}.to change(User, :count).by(1)
 		end
 
+	end
+
+	describe 'GET#show' do
+
+		before :each do
+			get :show, id: user, format: :json
+		end
+
+		it 'returns http success' do
+			expect(response).to be_success
+		end
 	end
 
 end
