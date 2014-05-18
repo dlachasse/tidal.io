@@ -3,7 +3,6 @@ class ArticlesController < ApplicationController
 
   def index
   	respond_with Feed.find(params[:feed_id]).articles
-
   end
 
   def show
