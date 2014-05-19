@@ -6,6 +6,7 @@ describe UsersController do
 	describe 'GET#new' do
 
 		before :each do
+			login_user(user)
 			get :new
 		end
 
@@ -21,6 +22,10 @@ describe UsersController do
 
 	describe 'POST#create' do
 
+		before :each do
+			login_user(user)
+		end
+
 		it 'saves new user' do
 			expect {
 				post :create, user: attributes_for(:user)
@@ -32,6 +37,7 @@ describe UsersController do
 	describe 'GET#show' do
 
 		before :each do
+			login_user(user)
 			get :show, id: user, format: :json
 		end
 

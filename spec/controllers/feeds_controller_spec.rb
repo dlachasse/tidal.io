@@ -1,10 +1,12 @@
 require 'spec_helper'
 
 describe FeedsController do
+	let(:user) { create(:user) }
 
 	describe 'GET#new' do
 
 		before :each do
+			login_user(user)
 			get :new
 		end
 
@@ -15,6 +17,10 @@ describe FeedsController do
 	end
 
 	describe 'POST#create' do
+
+		before :each do
+			login_user(user)
+		end
 
 		it 'creates new feed' do
 			expect {

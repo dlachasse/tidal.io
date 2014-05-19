@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  skip_before_filter :require_login, only: [:new, :create]
   respond_to :json, :html
 
   def new
