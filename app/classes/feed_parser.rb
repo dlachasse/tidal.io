@@ -24,10 +24,9 @@ class FeedParser
 	end
 
 	def self.check_and_save_article article
-		article_url = validate_domain(article.url)
 		Article.where(permalink: article_url).first_or_create!(
 			title: article.title,
-			permalink: article_url,
+			permalink: article.url,
 			body: article.content || article.summary,
 			published: article.published,
 			feed_id: @feed.id)
@@ -36,14 +35,6 @@ class FeedParser
 	def self.retrieve_name url
 		fetch(url)
 		@feedjira.title
-	end
-
-	def self.validate_domain url
-		if url =~ /(http|https):\/\/.*/
-			url
-		else
-			"#{@feed.url}#{url}"
-		end
 	end
 
 	def self.discover_rss url
