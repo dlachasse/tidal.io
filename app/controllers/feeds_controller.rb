@@ -13,12 +13,12 @@ class FeedsController < ApplicationController
   end
 
   def create
-    if @rss.size > 1 || @rss.empty?
+    if @rss.is_a? Array
       render :json => @rss.to_json
     else
-  	  @feed = Feed.where(url: @rss.first).first_or_create(url: @rss.first)
+  	  @feed = Feed.where(url: @rss).first_or_create(url: @rss)
       location = @feed.save ? feed_path(@feed) : new_feed_path
-      respond_with @feed, location: location
+      respond_with @feed
     end
   end
 
