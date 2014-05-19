@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
   def create
   	@user = login(params[:email], params[:password])
     location = @user ? user_path(@user) : login_path
-    respond_with @user
+    respond_with @user, location: location
   end
 
   def destroy

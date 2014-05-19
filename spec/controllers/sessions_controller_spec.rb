@@ -12,18 +12,4 @@ describe SessionsController do
 
   end
 
-  context 'POST#create' do
-    # it 'returns http success' do
-    #   expect {
-    #     post :create, session: attributes_for(:user)
-    #     }.(response).to be_success
-    # end
-
-    # it 'rerenders new template on unsuccessful login' do
-    #   expect {
-    #     post :create, session: attributes_for(:user, password: 'super password')
-    #   }.to render_template :new
-    # end
-  end
-
 end
