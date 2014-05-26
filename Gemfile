@@ -29,7 +29,12 @@ gem 'jbuilder', 						'~> 2.0'
 gem 'sass-rails',						'~> 4.0.3'
 gem 'jquery-rails',					'~> 3.1.0'
 gem 'uglifier', 						'>= 1.3.0'
-gem 'rails-assets-backbone'
+gem 'rails-assets-fastclick'
+gem 'rails-assets-angular'
+gem 'rails-assets-angular-resource'
+gem 'rails-assets-angular-sanitize'
+gem 'rails-assets-angular-route'
+gem 'rails-assets-angular-ui-router'
 
 group :development do
 	gem 'spring'

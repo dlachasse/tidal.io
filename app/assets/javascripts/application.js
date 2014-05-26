@@ -10,6 +10,10 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
+//= fastclick
+//= angular
+//= angular-resource
+//= angular-sanitize
+//= angular-route
+//= angular-ui-router
 //= require_tree .
