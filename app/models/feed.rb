@@ -30,11 +30,15 @@ class Feed < ActiveRecord::Base
 	end
 
 	def fetch_and_save_favicon
-		FaviconFetcherWorker.perform_async(self.id, self.url)
+		FaviconFetcherWorker.perform_async(self.id)
 	end
 
 	def self.update_feeds
 		self.requiring_update.map { |url| ArticleFetcherWorker.perform_async(url) }
+	end
+
+	def self.update_favicons
+		self.all.pluck(:id).map { |id| FaviconFetcherWorker.perform_async(id) }
 	end
 
 end

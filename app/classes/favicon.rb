@@ -2,20 +2,18 @@ class Favicon
 
 	attr_reader :id, :url
 
-	def initialize(id, url)
+	def initialize(id)
 		@feed = Feed.find(id)
-		@url = url
 		fetch
 	end
 
 	def fetch
-		@url = url
-		fav = Flavicon.find(url)
-		set_to_feed fav
+		fav = Flavicon.find(@feed.url)
+		set_to_feed fav unless fav.nil?
 	end
 
 	def set_to_feed favicon
-		@feed.update(favicon: favicon)
+		@feed.update!(favicon: favicon)
 	end
 
 end
