@@ -44,6 +44,7 @@ group :development do
 end
 
 group :test do
+  gem 'timecop',            '0.7.1'
   gem 'email_spec',					'1.5.0'
   gem 'shoulda-matchers',		'2.6.1.rc1'
   gem 'rspec-sidekiq',      '1.0.0'
