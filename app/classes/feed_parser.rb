@@ -39,7 +39,7 @@ class FeedParser
 
 	def self.discover_rss url
 		if Feedbag.feed? url
-			url
+			[url]
 		else
 			Feedbag.find url
 		end
