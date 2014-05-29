@@ -7,6 +7,7 @@ gem 'rails', 								'4.1.0'
 gem 'pg',                   '~> 0.17.1'
 gem 'sinatra',              '>= 1.3.0', :require => nil
 gem 'flavicon',             '0.1.0'
+gem 'will_paginate',        '~> 3.0'
 
 # Scheduling/Queuing
 gem 'whenever',             '0.9.2'
@@ -53,6 +54,7 @@ group :test do
   gem 'database_cleaner',		'~> 1.2.0'
   gem 'launchy',						'~> 2.4.2'
   gem 'selenium-webdriver',	'~> 2.39.0'
+  gem 'simplecov',          '~> 0.7.1', require: false
 end
 
 group :doc do
