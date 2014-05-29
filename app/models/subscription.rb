@@ -7,4 +7,8 @@ class Subscription < ActiveRecord::Base
 	# ASSOCIATIONS
 	belongs_to :user
 	belongs_to :feed
+
+	def self.create_subscription(user, feed)
+		self.where(user_id: user, feed_id: feed).first_or_create!(user_id: user, feed_id: feed)
+	end
 end
