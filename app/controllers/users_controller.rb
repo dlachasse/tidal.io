@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+	skip_before_filter :require_login
 	respond_to :json, :html
 
 	def show
@@ -21,7 +22,7 @@ class UsersController < ApplicationController
   def activate
 	  if (@user = User.load_from_activation_token(params[:id]))
 	    @user.activate!
-	    flash[:notice] ||= 'Your account was successfully activated.'
+	    @user.login(current_user.email, current_user.password)
 	  else
 	    not_authenticated
 	  end
