@@ -24,7 +24,7 @@ class FeedParser
 	end
 
 	def self.check_and_save_article article
-		Article.where(permalink: article_url).first_or_create!(
+		Article.where(permalink: article.url).first_or_create!(
 			title: article.title,
 			permalink: article.url,
 			body: article.content || article.summary,
