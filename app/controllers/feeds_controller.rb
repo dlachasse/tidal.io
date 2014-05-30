@@ -23,10 +23,6 @@ class FeedsController < ApplicationController
     end
   end
 
-  def destroy
-  	Feed.find(params[:id]).destroy
-  end
-
   private
 
   def feed_params
