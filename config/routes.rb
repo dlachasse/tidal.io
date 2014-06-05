@@ -1,22 +1,24 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
 
-  scope 'api' do
-    resources :users, except: [:index] do
-      member do
-        get :activate
+  namespace :api, defaults: {format: 'json'} do
+    scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
+      resources :users, except: [:index] do
+        member do
+          get :activate
+        end
+        get 'feeds', to: 'subscriptions#index'
       end
-      get 'feeds', to: 'subscriptions#index'
+
+      get 'login', to: 'sessions#new', as: :login
+      resources :sessions, except: [:index, :edit, :update, :new]
+
+      resources :feeds, except: [:index, :edit, :update] do
+        get 'articles', to: 'articles#index'
+      end
+
+      get 'article/:id', to: 'articles#show'
     end
-
-    get 'login', to: 'sessions#new', as: :login
-    resources :sessions, except: [:index, :edit, :update, :new]
-
-    resources :feeds, except: [:index, :edit, :update] do
-      get 'articles', to: 'articles#index'
-    end
-
-    get 'article/:id', to: 'articles#show'
   end
 
   mount Sidekiq::Web => '/sidekiq'
