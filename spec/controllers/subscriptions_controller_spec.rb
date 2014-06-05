@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe SubscriptionsController do
+describe Api::V1::SubscriptionsController do
 
 end

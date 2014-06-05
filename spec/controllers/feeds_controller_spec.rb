@@ -1,7 +1,7 @@
 require 'spec_helper'
 Capybara.app_host = 'http://0.0.0.0:3000'
 
-describe FeedsController do
+describe Api::V1::FeedsController do
 	let(:feed) { create(:feed) }
 	let(:user) { create(:user) }
 
