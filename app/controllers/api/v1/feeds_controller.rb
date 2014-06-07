@@ -11,6 +11,11 @@ module Api
       	@feed = Feed.new
       end
 
+      def index
+        @feeds = Feed.all
+        render :json => @feeds.to_json
+      end
+
       def show
         @feed = Feed.find(params[:id])
         render :json => @feed.to_json(only: [:id, :name, :url])
