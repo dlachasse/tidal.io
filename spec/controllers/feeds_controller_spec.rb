@@ -1,6 +1,8 @@
 require 'spec_helper'
+Capybara.app_host = 'http://0.0.0.0:3000'
 
 describe FeedsController do
+	let(:feed) { create(:feed) }
 	let(:user) { create(:user) }
 
 	describe 'GET#new' do
@@ -18,22 +20,49 @@ describe FeedsController do
 
 	describe 'POST#create' do
 
-		before :each do
-			login_user(user)
+		context 'logged in user' do
+
+			before :each do
+				login_user(user)
+			end
+
+			it 'creates new feed' do
+				expect {
+					post :create, feed: { url: 'https://github.com/blog/drinkup.atom' }, user_id: user.id
+				}.to change(Feed, :count).by(1)
+			end
+
+			it 'subscribes user after creating' do
+				expect {
+					post :create, feed: { url: 'https://github.com/blog/drinkup.atom' }, user_id: user.id
+				}.to change(Subscription, :count).by(1)
+			end
+
 		end
 
-		it 'creates new feed' do
-			expect {
-				session[:user_id] = 1
-				post :create, feed: { url: 'https://github.com/blog/drinkup.atom' }
-			}.to change(Feed, :count).by(1)
+		context 'logged out user' do
+
+			it 'cannot create new feed' do
+				expect {
+					post :create, feed: { url: 'https://github.com/blog/drinkup.atom' }, user_id: nil
+				}.to change(Feed, :count).by(0)
+			end
+
 		end
 
-		it 'subscribes user after creating' do
-			expect {
-				session[:user_id] = 1
-				post :create, feed: { url: 'https://github.com/blog/drinkup.atom' }
-			}.to change(Subscription, :count).by(1)
+	end
+
+	describe 'GET#show' do
+
+		context 'for logged in user' do
+
+			it 'shows feed of :id' do
+				login_user(user)
+				@response_object = { 'id' => feed.id, 'name' => feed.name, 'url' => feed.url }.to_json
+				get :show, id: feed.id
+				expect(response.body).to eq @response_object
+			end
+
 		end
 
 	end

@@ -8,21 +8,39 @@ describe Feed do
 	it { should have_many(:articles) }
 	it { should validate_presence_of(:url) }
 
-	context 'creating new feed' do
+	context 'callbacks' do
 
-		it 'creates a new enqueued job' do
-			new_feed = create(:feed)
-			expect(ArticleFetcherWorker).to have_enqueued_job(new_feed.url)
+		describe '#retrieve_name' do
+
+			it 'finds correct title from feed before saving' do
+				expect(feed.retrieve_name).to eq 'Daring Fireball'
+			end
+
+		end
+
+		context 'after_create' do
+
+			before :each do
+				@current_time = Time.now
+				Timecop.freeze(@current_time)
+				@new_feed = create(:feed, url: 'http://swashcap.com/feed/', name: nil)
+			end
+
+			it 'creates new favicon worker' do #fetch_and_save_favicon
+				expect(FaviconFetcherWorker).to have_enqueued_job(@new_feed.id)
+			end
+
+			it 'creates a new feed worker' do #pull_down_feed
+				expect(ArticleFetcherWorker).to have_enqueued_job(@new_feed.url)
+			end
+
+			it 'refreshes update timestamp' do #pull_down_feed
+				expect(@new_feed.last_checked).to eq @current_time
+			end
+
 		end
 
 	end
 
-	describe '#retrieve_name' do
-
-		it 'finds correct title from feed' do
-			expect(feed.retrieve_name).to eq 'Daring Fireball'
-		end
-
-	end
 
 end
