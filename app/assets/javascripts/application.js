@@ -10,10 +10,9 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= fastclick
-//= angular
-//= angular-resource
-//= angular-sanitize
-//= angular-route
-//= angular-ui-router
-//= require_tree .
+//= require vendor/fastclick/lib/fastclick.js
+//= require vendor/angular/angular.min.js
+//= require vendor/angular-resource/angular-resource.min.js
+//= require vendor/angular-route/angular-route.min.js
+//= require vendor/angular-sanitize/angular-sanitize.min.js
+//= require vendor/angular-ui-router/release/angular-ui-router.min.js
