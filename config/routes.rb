@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       end
 
 
-      resources :feeds, except: [:index, :edit, :update] do
+      resources :feeds, except: [:edit, :update] do
         get 'articles', to: 'articles#index'
       end
 
@@ -19,7 +19,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :sessions, except: [:index, :edit, :update, :new]
+  resources :sessions, only: [:create, :destroy]
   get 'login', to: 'sessions#new', as: :login
 
   mount Sidekiq::Web => '/sidekiq'
