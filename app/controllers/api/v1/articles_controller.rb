@@ -5,7 +5,8 @@ module Api
 			respond_to :json
 
 		  def index
-		  	respond_with Feed.find(params[:feed_id]).articles
+		  	articles = Feed.find(params[:feed_id]).articles.newest
+		  	respond_with articles.batch(params[:count]).start(params[:start])
 		  end
 
 		  def show
