@@ -6,7 +6,7 @@ module Api
 
 			def show
 				@user = User.find(params[:id])
-				render :json => @user.to_json(:only => [:id, :name, :email])
+				render :json => @user.to_json(:only => [:id, :name, :email, :api_key])
 			end
 
 			def new
