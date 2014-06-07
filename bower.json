@@ -1,0 +1,11 @@
+{
+  "name": "tidal.io",
+  "version": "0.0.0",
+  "homepage": "https://github.com/dlachasse/tidal.io",
+  "authors": [
+    "Swashcap <swashcap@gmail.com>",
+    "David La Chasse <david.lachasse@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true
+}

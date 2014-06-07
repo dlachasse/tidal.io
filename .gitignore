@@ -20,3 +20,6 @@ log/
 
 /config/database.yml
 coverage/*
+
+# Ingnore vendor scripts installed by Bower
+/app/assets/javascripts/vendor/*
