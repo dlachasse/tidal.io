@@ -5,19 +5,6 @@ describe Api::V1::FeedsController do
 	let(:feed) { create(:feed) }
 	let(:user) { create(:user) }
 
-	describe 'GET#new' do
-
-		before :each do
-			login_user(user)
-			get :new
-		end
-
-		it 'renders new template' do
-			expect(response).to render_template :new
-		end
-
-	end
-
 	describe 'POST#create' do
 
 		context 'logged in user' do
