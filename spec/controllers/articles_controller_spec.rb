@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ArticlesController do
+describe Api::V1::ArticlesController do
 
   let(:user) { create(:user) }
   let(:feed) { create(:feed) }

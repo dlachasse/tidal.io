@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UsersController do
+describe Api::V1::UsersController do
 	let(:user) { create(:user) }
 
 	describe 'GET#new' do
@@ -15,7 +15,7 @@ describe UsersController do
 		end
 
 		it 'uses correct named route' do
-			expect(new_user_path).to eq '/api/users/new'
+			expect(new_api_user_path).to eq '/api/users/new'
 		end
 
 	end
@@ -37,7 +37,7 @@ describe UsersController do
 	describe 'GET#show' do
 
 		before :each do
-			login_user(user)
+			preset_authenticated_request(user)
 			get :show, id: user, format: :json
 		end
 

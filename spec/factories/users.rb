@@ -5,6 +5,7 @@ FactoryGirl.define do
   	name                   { Faker::Name.first_name }
   	email                  { Faker::Internet.email }
     password               { Faker::Internet.password }
+    api_key                SecureRandom.base64.tr('+/=', 'Qrt')
 
     factory :user_with_subscriptions do
       ignore do
