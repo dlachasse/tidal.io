@@ -16,12 +16,18 @@
 //= require vendor/angular-route/angular-route.min.js
 //= require vendor/angular-sanitize/angular-sanitize.min.js
 //= require vendor/angular-ui-router/release/angular-ui-router.min.js
+//
+// Get all the Angular templates
+// (https://github.com/pitr/angular-rails-templates)
+//= require angular-rails-templates
+//= require_tree ../templates
 
 angular.module('tidal', [
   'ngResource',
   'ngRoute',
   'ngSanitize',
-  'ui.router'
+  'ui.router',
+  'templates'
 ])
 .config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
   //$urlRouterProvider.otherwise('/');
