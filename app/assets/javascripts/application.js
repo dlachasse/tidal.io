@@ -16,3 +16,32 @@
 //= require vendor/angular-route/angular-route.min.js
 //= require vendor/angular-sanitize/angular-sanitize.min.js
 //= require vendor/angular-ui-router/release/angular-ui-router.min.js
+
+angular.module('tidal', [
+  'ngResource',
+  'ngRoute',
+  'ngSanitize',
+  'ui.router'
+])
+.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
+  //$urlRouterProvider.otherwise('/');
+
+  $stateProvider
+    .state('home', {
+      url: '/',
+      template: '<div>{{ message }}</div>',
+      controller: 'HomeCtrl'
+    });
+}]);
+
+angular.module('tidal').value('API_KEY', 'M57GbkrIIQwiYf0E42Tvtwtt');
+
+angular.module('tidal').controller('HomeCtrl', [
+  '$scope',
+  '$resource',
+  'API_KEY',
+  function ($scope, $resource, API_KEY) {
+    $scope.message = 'Hello, shitheads.';
+
+    console.log(API_KEY);
+  }]);
