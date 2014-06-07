@@ -4,7 +4,8 @@ module Api
 			respond_to :json
 
 			def index
-				respond_with User.find(params[:user_id]).subscriptions
+				subscriptions = User.find(params[:user_id]).subscriptions.pluck(:feed_id)
+				respond_with Article.where(feed_id: subscriptions).newest.batch(params[:count]).start(params[:start])
 			end
 		end
 
