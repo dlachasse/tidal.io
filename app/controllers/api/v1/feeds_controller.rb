@@ -2,7 +2,6 @@ module Api
   module V1
     class FeedsController < ApplicationController
       skip_before_filter :restrict_access, only: [:show]
-      after_action :subscribe_user, only: [:create]
       before_action :grab_user, only: [:create]
       before_action :validate_feed, only: [:create]
       respond_to :json
@@ -26,6 +25,7 @@ module Api
           render :json => @rss.to_json
         else
       	  @feed = Feed.where(url: @rss.first).first_or_create(url: @rss.first)
+          subscribe_user
           render :json => @feed
         end
       end
@@ -46,7 +46,12 @@ module Api
       end
 
       def grab_user
-        @user = User.find(params[:user_id])
+        key = strip_api_key(request.headers["Authorization"])
+        @user = User.find(request.headers["Authorization"])
+      end
+
+      def strip_api_key token
+        token.gsub!(/\sToken\stoken=/, '')
       end
 
     end
