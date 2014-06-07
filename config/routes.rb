@@ -11,7 +11,7 @@ Rails.application.routes.draw do
       end
 
 
-      resources :feeds, except: [:index, :edit, :update] do
+      resources :feeds, except: [:edit, :update] do
         get 'articles', to: 'articles#index'
       end
 
