@@ -4,7 +4,7 @@ module Api
       after_action :subscribe_user, only: [:create]
       before_action :grab_user, only: [:create]
       before_action :validate_feed, only: [:create]
-      respond_to :json, :html
+      respond_to :json
 
       def new
       	@feed = Feed.new
@@ -20,8 +20,7 @@ module Api
           render :json => @rss.to_json
         else
       	  @feed = Feed.where(url: @rss.first).first_or_create(url: @rss.first)
-          location = @feed.save ? feed_path(@feed) : new_feed_path
-          respond_with @feed
+          render :json => @feed
         end
       end
 
