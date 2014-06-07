@@ -5,7 +5,7 @@ module Api
 
 			def index
 				subscriptions = User.find(params[:user_id]).subscriptions.pluck(:feed_id)
-				respond_with Article.where(feed_id: subscriptions).batch(params[:count]).start(params[:start])
+				respond_with Article.where(feed_id: subscriptions).newest.batch(params[:count]).start(params[:start])
 			end
 		end
 
