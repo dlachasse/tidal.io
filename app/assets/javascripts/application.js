@@ -35,7 +35,7 @@ angular.module('tidal', [
   $stateProvider
     .state('home', {
       url: '/',
-      template: '<div>{{ message }}</div>',
+      templateUrl: 'home.html',
       controller: 'HomeCtrl'
     });
 }]);
@@ -44,10 +44,19 @@ angular.module('tidal').value('API_KEY', 'M57GbkrIIQwiYf0E42Tvtwtt');
 
 angular.module('tidal').controller('HomeCtrl', [
   '$scope',
-  '$resource',
+  '$http',
   'API_KEY',
-  function ($scope, $resource, API_KEY) {
-    $scope.message = 'Hello, shitheads.';
+  function ($scope, $http, API_KEY) {
+    var feeds = getFeeds();
 
-    console.log(API_KEY);
+    feeds.then(function (data) {
+      $scope.feeds = data.data;
+    });
+
+    function getFeeds() {
+      $http.defaults.headers.common.Authorization = 'Token token=' + API_KEY;
+      $http.defaults.headers.common.Accept = 'application/tidal.v1';
+
+      return $http.get('/api/feeds');
+    }
   }]);
