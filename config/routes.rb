@@ -10,12 +10,11 @@ Rails.application.routes.draw do
         get 'feeds', to: 'subscriptions#index'
       end
 
-
       resources :feeds, except: [:edit, :update] do
         get 'articles', to: 'articles#index'
       end
 
-      get 'article/:id', to: 'articles#show'
+      get 'article/:id', to: 'articles#show', as: 'article'
     end
   end
 
