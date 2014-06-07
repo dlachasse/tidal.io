@@ -24,5 +24,5 @@ Rails.application.routes.draw do
 
   mount Sidekiq::Web => '/sidekiq'
 
-  root 'users#new'
+  root 'api/v1/users#new'
 end
