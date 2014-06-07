@@ -1,6 +1,7 @@
 module Api
   module V1
     class FeedsController < ApplicationController
+      skip_before_filter :restrict_access, only: [:show]
       after_action :subscribe_user, only: [:create]
       before_action :grab_user, only: [:create]
       before_action :validate_feed, only: [:create]

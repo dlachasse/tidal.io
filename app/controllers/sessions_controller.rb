@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  skip_before_filter :require_login, only: [:new, :create]
+  skip_before_filter :restrict_access, only: [:new, :create]
   respond_to :json, :html
 
   def new
@@ -8,7 +8,7 @@ class SessionsController < ApplicationController
 
   def create
   	@user = login(params[:email], params[:password])
-    location = @user ? user_path(@user) : login_path
+    location = @user ? api_user_path(@user) : login_path
     respond_with @user, location: location
   end
 
