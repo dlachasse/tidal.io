@@ -1,3 +1,5 @@
+'use strict';
+
 angular.module('tidal')
   .factory('feed', ['$http', function ($http) {
     var API_URL = '/api/feeds';
