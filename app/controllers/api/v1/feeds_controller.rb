@@ -21,10 +21,10 @@ module Api
       end
 
       def create
-        if @rss.is_a?(Array) && @rss.count > 1
+        if @rss.count > 1
           render :json => @rss.to_json
         else
-      	  @feed = Feed.where(url: @rss.first).first_or_create(url: @rss.first)
+      	  @feed = Feed.where(feed_url: @rss.first).first_or_create(feed_url: @rss.first)
           subscribe_user
           render :json => @feed
         end
@@ -33,7 +33,7 @@ module Api
       private
 
       def feed_params
-        params.require(:feed).permit(:url)
+        params.permit(:url)
       end
 
       def subscribe_user
@@ -42,16 +42,16 @@ module Api
 
       def validate_feed
         @rss = []
-        FeedParser.discover_rss(params[:feed][:url]).map { |url| @rss << url }
+        FeedParser.discover_rss(params[:url]).map { |url| @rss << url }.flatten
       end
 
       def grab_user
         key = strip_api_key(request.headers["Authorization"])
-        @user = User.find(request.headers["Authorization"])
+        @user = User.find_by(api_key: request.headers["Authorization"])
       end
 
       def strip_api_key token
-        token.gsub!(/\sToken\stoken=/, '')
+        token.gsub!(/Token\stoken=/, '')
       end
 
     end

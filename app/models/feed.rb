@@ -1,28 +1,30 @@
 class Feed < ActiveRecord::Base
 
 	# VALIDATIONS
-	validates :url, presence: true
+	# validates :feed_url, presence: true
 
 	# ASSOCIATIONS
 	has_many :users, through: :subscriptions, as: :subscribers
 	has_many :articles
 
 	# CALLBACKS
-	before_save :retrieve_name
+	before_save :retrieve_feed_data
 	after_create :fetch_and_save_favicon
 	after_create :pull_down_feed
 	after_create :update_last_checked
 	after_update :update_last_checked
 
 	# SCOPES
-	scope :requiring_update, -> { where('last_checked < ? OR last_checked IS NULL', 20.minutes.ago).pluck(:url) }
+	scope :requiring_update, -> { where('last_checked < ? OR last_checked IS NULL', 20.minutes.ago).pluck(:feed_url) }
 
 	def pull_down_feed
-		ArticleFetcherWorker.perform_async(self.url)
+		ArticleFetcherWorker.perform_async(self.feed_url)
 	end
 
-	def retrieve_name
-		self.name = FeedParser.retrieve_name(self.url)
+	def retrieve_feed_data
+		feed = FeedParser.retrieve_feed_data(self.feed_url)
+		self.name 		 = feed[:name]
+		self.url	 		 = feed[:url]
 	end
 
 	def update_last_checked
@@ -34,7 +36,7 @@ class Feed < ActiveRecord::Base
 	end
 
 	def self.update_feeds
-		self.requiring_update.map { |url| ArticleFetcherWorker.perform_async(url) }
+		self.requiring_update.map { |feed_url| ArticleFetcherWorker.perform_async(feed_url) }
 	end
 
 	def self.update_favicons
