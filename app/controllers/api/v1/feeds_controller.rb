@@ -47,11 +47,11 @@ module Api
 
       def grab_user
         key = strip_api_key(request.headers["Authorization"])
-        @user = User.find(request.headers["Authorization"])
+        @user = User.find_by(api_key: request.headers["Authorization"])
       end
 
       def strip_api_key token
-        token.gsub!(/\sToken\stoken=/, '')
+        token.gsub!(/Token\stoken=/, '')
       end
 
     end
