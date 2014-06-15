@@ -28,17 +28,10 @@ angular.module('tidal', [
   'ngSanitize',
   'ui.router',
   'templates'
-])
-.config(['$urlRouterProvider', '$stateProvider', function ($urlRouterProvider, $stateProvider) {
-  //$urlRouterProvider.otherwise('/');
+]);
 
-  $stateProvider
-    .state('home', {
-      url: '/',
-      templateUrl: 'home.html',
-      controller: 'HomeCtrl'
-    });
-}]);
+// Load configuration files
+//= require_tree ./config
 
 angular.module('tidal').value('API_KEY', 'M57GbkrIIQwiYf0E42Tvtwtt');
 
