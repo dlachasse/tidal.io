@@ -16,6 +16,7 @@ gem 'sidekiq',              '~> 3.0.0'
 # RSS Related
 gem 'feedjira',							'1.2.0'
 gem 'feedbag',              '0.9.2'
+gem 'sanitize',             '2.1.0'
 
 # Config
 gem 'figaro',        				'~> 0.7.0'
