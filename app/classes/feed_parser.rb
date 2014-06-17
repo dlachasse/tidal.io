@@ -39,10 +39,15 @@ class FeedParser
 			scrub.validate_article
 		end
 
+		def scrub_feed
+			scrub = Scrubber.new(@feedjira)
+			scrub.validate_feed
+		end
+
 		def retrieve_feed_data feed_url
 			fetch(feed_url)
 			data = Hash.new
-			data[:name]  = @feedjira.title
+			data[:name]  = scrub_feed
 			data[:url] 	 = find_url
 			return data
 		end
@@ -58,23 +63,17 @@ class FeedParser
 		end
 
 		def find_url
-			@url = @feedjira.url
-			@feed_url = @feedjira.feed_url
-			locate
-		end
-
-		def locate
-			if @url
-				@url
-			elsif @feed_url =~ /feeds.feedburner.com/
+			if @feedjira.url
+				@feedjira.url
+			elsif @feedjira.feed_url =~ /feeds.feedburner.com/
 				find_main_url_from_feedburner
 			else
-				logger.info "Feed URL is empty, XML feed found at: #{@feed_url}"
+				logger.info "Feed URL is empty, XML feed found at: #{@feedjira.feed_url}"
 			end
 		end
 
 		def find_main_url_from_feedburner
-			page = Nokogiri::XML.parse(open(@feed_url))
+			page = Nokogiri::XML.parse(open(@feedjira.feed_url))
 			namespace = set_namespace page
 			page.xpath('//xmlns:link/@href', namespace).first.value
 		end
