@@ -9,9 +9,25 @@ class Scrubber
   	@content = content
   end
 
+  def validate_feed
+  	clean_title
+  end
+
   def validate_article
-  	delegate = lambda { |attribute| "clean_#{attribute}".to_sym }
-  	@content.each { |attribute| delegate.call(attribute) }
+  	@content.content = consolidate_content
+  	clean_content; clean_title; clean_url;
+  end
+
+  def consolidate_content
+  	if @content.content && @content.summary
+  		return_longest
+  	else
+  		@content.content
+  	end
+  end
+
+  def return_longest
+  	[@content.content, @content.summary].max_by(&:length)
   end
 
   def clean_content
@@ -27,8 +43,16 @@ class Scrubber
 		@content.title = trim_content @content.title
 	end
 
-	def trim_content content
-		content.strip
+	def clean_url
+		@content.url = trim_content @content.url
 	end
+
+	def trim_content string
+		string.strip
+	end
+
+	def method_missing(meth, *args, &block)
+    puts "Unsuccesfully tried to run method: #{meth}"
+  end
 
 end
