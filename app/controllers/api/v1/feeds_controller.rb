@@ -42,7 +42,11 @@ module Api
 
       def validate_feed
         @rss = []
-        FeedParser.discover_rss(params[:feed_url]).map { |url| @rss << url }.flatten
+        feeds = FeedParser.discover_rss(params[:feed_url])
+        unless !@rss.blank?
+          feeds = FeedParser.discover_https_rss(params[:feed_url])
+        end
+        feeds.map { |url| @rss << url }.flatten
       end
 
       def grab_user

@@ -58,7 +58,9 @@ class FeedParser
 			else
 				Feedbag.find feed_url
 			end
-		rescue
+		end
+
+		def discover_https_rss feed_url
 			discover_rss(feed_url.gsub!(/http/, 'https'))
 		end
 
