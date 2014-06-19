@@ -56,12 +56,17 @@ class FeedParser
 			if Feedbag.feed? feed_url
 				[feed_url]
 			else
-				Feedbag.find feed_url
+				check_https feed_url
 			end
 		end
 
-		def discover_https_rss feed_url
-			discover_rss(feed_url.gsub!(/http/, 'https'))
+		def check_https feed_url
+			feed = Feedbag.find feed_url
+			if feed.empty?
+				discover_rss(feed_url.gsub!(/http/, 'https'))
+			else
+				[feed]
+			end
 		end
 
 		def find_url
