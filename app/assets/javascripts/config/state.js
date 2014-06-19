@@ -7,5 +7,10 @@ angular.module('tidal')
         url: '/',
         templateUrl: 'home.html',
         controller: 'HomeCtrl'
+      })
+      .state('feed', {
+        url: '/feed/:id',
+        templateUrl: 'feed.html',
+        controller: 'FeedCtrl'
       });
   }]);

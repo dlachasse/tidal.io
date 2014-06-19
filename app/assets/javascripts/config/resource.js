@@ -5,12 +5,12 @@ angular.module('tidal')
     /**
      * Add credentials to every request.
      */
-    $resourceProvider.default.headers.common.Authorization = 'Token token=' + API_KEY;
-    $resourceProvider.default.headers.common.Accept = 'application/tidal.v1';
+    // $resourceProvider.default.headers.common.Authorization = 'Token token=' + API_KEY;
+    // $resourceProvider.default.headers.common.Accept = 'application/tidal.v1';
 
     /**
      * Make 'PUT' methods Rails-friendly by changing the HTTP verb to
      * 'PATCH'.
      */
-    $resourceProvider.default.headers.put = { method: 'PATCH' };
+    // $resourceProvider.default.headers.put = { method: 'PATCH' };
   }]);

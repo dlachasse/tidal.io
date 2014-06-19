@@ -8,6 +8,12 @@ angular.module('tidal')
       get: function (id) {
         return $http(API_URL + '/' + id);
       },
+      markRead: function (id) {
+
+      },
+      markUnread: function (id) {
+
+      },
       update: function (id, data) {
         return $http.put(API_URL + '/' + id, data);
       }

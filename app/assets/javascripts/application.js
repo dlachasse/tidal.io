@@ -21,35 +21,9 @@
 // (https://github.com/pitr/angular-rails-templates)
 //= require angular-rails-templates
 //= require_tree ../templates
-
-angular.module('tidal', [
-  'ngResource',
-  'ngRoute',
-  'ngSanitize',
-  'ui.router',
-  'templates'
-]);
-
-// Load configuration files
+//
+//= require bootstrap.js
+//= require_tree ./constants
 //= require_tree ./config
-
-angular.module('tidal').value('API_KEY', 'M57GbkrIIQwiYf0E42Tvtwtt');
-
-angular.module('tidal').controller('HomeCtrl', [
-  '$scope',
-  '$http',
-  'API_KEY',
-  function ($scope, $http, API_KEY) {
-    var feeds = getFeeds();
-
-    feeds.then(function (data) {
-      $scope.feeds = data.data;
-    });
-
-    function getFeeds() {
-      $http.defaults.headers.common.Authorization = 'Token token=' + API_KEY;
-      $http.defaults.headers.common.Accept = 'application/tidal.v1';
-
-      return $http.get('/api/feeds');
-    }
-  }]);
+//= require_tree ./services
+//= require_tree ./controllers
