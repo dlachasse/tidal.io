@@ -43,9 +43,6 @@ module Api
       def validate_feed
         @rss = []
         feeds = FeedParser.discover_rss(params[:feed_url])
-        unless !@rss.blank?
-          feeds = FeedParser.discover_https_rss(params[:feed_url])
-        end
         feeds.map { |url| @rss << url }.flatten
       end
 
