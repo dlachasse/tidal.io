@@ -20,3 +20,5 @@ log/
 
 /config/database.yml
 coverage/*
+
+/app/assets/javascripts/vendor/*
