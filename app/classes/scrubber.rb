@@ -1,58 +1,91 @@
 require 'html'
 
-class Scrubber
-	include HTML
+module Scrubber
 
-	attr_accessor :content
+  class Article
+    include HTML
+    attr_accessor :article
 
-  def initialize content
-  	@content = content
+    def initialize article
+    	@article = article
+    end
+
+    def validate
+      @article.content = consolidate_content
+      clean_content; clean_title; clean_url;
+      @article
+    end
+
+    def consolidate_content
+      @article.content && @article.summary ? return_longest : @article.content
+    end
+
+    def return_longest
+      [@article.content, @article.summary].max_by(&:length)
+    end
+
+    def clean_content
+      @article.content = Sanitize.clean(
+        @article.content,
+        attributes: HTML::WHITELIST[:attrs],
+        elements: HTML::WHITELIST[:html],
+        remove_contents: HTML::WHITELIST[:strip],
+        transformers: HTML::BLACKLIST,
+        output_encoding: 'utf-8')
+    end
+
+    def clean_title
+      @article.title = trim_content @article.title
+    end
+
+    def clean_url
+      @article.url = trim_content @article.url
+    end
+
+    def trim_content string
+      string.strip
+    end
+
   end
 
-  def validate_feed
-  	clean_title
-  end
+  class Feed
+    attr_accessor :feedjira
 
-  def validate_article
-  	@content.content = consolidate_content
-  	clean_content; clean_title; clean_url;
-  end
+    def initialize feedjira
+      @feedjira = feedjira
+    end
 
-  def consolidate_content
-  	if @content.content && @content.summary
-  		return_longest
-  	else
-  		@content.content
-  	end
-  end
+    def validate
+      clean_title; find_url;
+      @feedjira
+    end
 
-  def return_longest
-  	[@content.content, @content.summary].max_by(&:length)
-  end
+    def clean_title
+      @feedjira.title = @feedjira.title.strip
+    end
 
-  def clean_content
-	  @content.content = Sanitize.clean(
-		  @content.content,
-		  attributes: HTML::WHITELIST[:attrs],
-		  elements: HTML::WHITELIST[:html],
-		  remove_contents: HTML::WHITELIST[:strip],
-		  output_encoding: 'utf-8')
-	end
+    def find_url
+      if @feedjira.url
+        @feedjira.url
+      elsif @feedjira.feed_url =~ /feeds.feedburner.com/
+        @feedjira.url = find_main_url_from_feedburner
+      else
+        logger.info "Feed URL is empty, XML feed found at: #{@feedjira.feed_url}"
+      end
+    end
 
-	def clean_title
-		@content.title = trim_content @content.title
-	end
+    def find_main_url_from_feedburner
+      page = Nokogiri::XML.parse(open(@feedjira.feed_url))
+      namespace = set_namespace page
+      page.xpath('//xmlns:link/@href', namespace).first.value
+    end
 
-	def clean_url
-		@content.url = trim_content @content.url
-	end
+    def set_namespace doc
+      ns = doc.namespaces.first[0]
+      v = doc.namespaces.first[1]
+      {ns => v}
+    end
 
-	def trim_content string
-		string.strip
-	end
-
-	def method_missing(meth, *args, &block)
-    puts "Unsuccesfully tried to run method: #{meth}"
   end
 
 end

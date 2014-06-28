@@ -31,4 +31,27 @@ module HTML
       :strip => ['datalist','style']
     }
 
+    BLACKLIST = lambda do |env|
+      node      = env[:node]
+      node_name = env[:node_name]
+
+      return unless node_name == "a"
+
+      # We're now certain that this is a YouTube embed, but we still need to run
+      # it through a special Sanitize step to ensure that no unwanted elements or
+      # attributes that don't belong in a YouTube embed can sneak in.
+      # Sanitize.clean_node!(node, {
+      #   :elements => %w[iframe],
+
+      #   :attributes => {
+      #     'iframe'  => %w[allowfullscreen frameborder height src width]
+      #   }
+      # })
+
+      # Now that we're sure that this is a valid YouTube embed and that there are
+      # no unwanted elements or attributes hidden inside it, we can tell Sanitize
+      # to whitelist the current node.
+      {:node_whitelist => [node]}
+    end
+
 end
