@@ -8,15 +8,17 @@ module Scrubber
 
     def initialize article
     	@article = article
+      @article.content = consolidate_content
     end
 
     def validate
-      @article.content = consolidate_content
       clean_content; clean_title; clean_url;
       @article
     end
 
     def consolidate_content
+      @article.content = "" if @article.content.nil?
+      @article.summary = "" if @article.summary.nil?
       @article.content && @article.summary ? return_longest : @article.content
     end
 
