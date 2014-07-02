@@ -1,22 +1,13 @@
 'use strict';
 
 angular.module('tidal')
-  .controller('HomeCtrl', ['$scope', 'user', function ($scope, user) {
-    var user = new user
+  .controller('HomeCtrl', ['$scope', 'user', 'feed', function ($scope, user, feed) {
 
     $scope.message = 'Welcome!';
 
-    // $scope.feeds = [
-    //   {
-    //     id: 1,
-    //     name: 'test 1',
-    //   }, {
-    //     id: 2,
-    //     name: 'test 2'
-    //   },
-    //   {
-    //     id: 3,
-    //     name: 'test 3'
-    //   }
-    // ];
+    $scope.user = user;
+
+    feed.get().then(function (data) {
+      $scope.feeds = data.data;
+    });
   }]);

@@ -1,4 +1,4 @@
-'use strict';
+ 'use strict';
 
 angular.module('tidal')
   .factory('feed', ['$http', function ($http) {
@@ -9,9 +9,15 @@ angular.module('tidal')
         return $http.post(API_URL, data)
       },
       get: function (id) {
+        var url;
+
         if (id != null) {
-          return $http.get(API_URL + '/id');
+          url = API_URL + '/id';
+        } else {
+          url = API_URL;
         }
+
+        return $http.get(url);
       },
       update: function (id, data) {
         return $http.put(API_URL + '/id', data);
