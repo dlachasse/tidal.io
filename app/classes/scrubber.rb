@@ -31,7 +31,7 @@ module Scrubber
         elements: HTML::WHITELIST[:html],
         remove_contents: HTML::WHITELIST[:strip],
         transformers: HTML::BLACKLIST,
-        output_encoding: 'utf-8')
+        output_encoding: 'utf-8').strip
     end
 
     def clean_title
