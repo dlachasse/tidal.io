@@ -43,7 +43,7 @@ module Scrubber
     end
 
     def trim_content string
-      string.strip
+      string.strip unless string.nil?
     end
 
   end
@@ -61,7 +61,10 @@ module Scrubber
     end
 
     def clean_title
-      @feedjira.title = @feedjira.title.strip
+      if @feedjira.title
+        p "#{@feedjira.title}"
+        @feedjira.title = @feedjira.title.strip
+      end
     end
 
     def find_url
@@ -70,7 +73,7 @@ module Scrubber
       elsif @feedjira.feed_url =~ /feeds.feedburner.com/
         @feedjira.url = find_main_url_from_feedburner
       else
-        logger.info "Feed URL is empty, XML feed found at: #{@feedjira.feed_url}"
+        Rails.logger.info "Feed URL is empty, XML feed found at: #{@feedjira.feed_url}"
       end
     end
 
