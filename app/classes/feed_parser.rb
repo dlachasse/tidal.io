@@ -16,8 +16,10 @@ class FeedParser
 		def retrieve_entries feed_url
 			fetch(feed_url)
 			load_feed(feed_url)
-			@feedjira.entries.map { |article|	check_and_save_article article }
-			set_feed_update
+			if @feedjira.entries
+				@feedjira.entries.map { |article|	check_and_save_article article }
+				set_feed_update
+			end
 		end
 
 		def set_feed_update
