@@ -39,35 +39,48 @@ class FeedParser
 			scrub.validate
 		end
 
-		def scrub_feed
+		def scrub_feed feed_url
+			@feedjira = @feedjira.values.first if @feedjira.is_a? Hash
 			scrub = Scrubber::Feed.new(@feedjira)
 			@feedjira = scrub.validate
 		end
 
 		def retrieve_feed_data feed_url
 			fetch(feed_url)
-			scrub_feed
+			scrub_feed(feed_url)
 			data = Hash.new
 			data[:name]  = @feedjira.title
 			data[:url] 	 = @feedjira.url
 			return data
 		end
 
-		def discover_rss feed_url
-			if Feedbag.feed? feed_url
-				[feed_url]
-			else
-				check_https feed_url
-			end
-		end
+		def validate_passed_url feed_url
+			feeds = []
+      url = RSSValidation.new(feed_url)
+      if url.valid?
+      	feeds << feed_url
+      else
+      	url.discover_rss.map { |url| feeds << url }.flatten
+      end
+      return_data feeds
+    end
 
-		def check_https feed_url
-			feed = Feedbag.find feed_url
-			if feed.empty?
-				discover_rss(feed_url.gsub!(/http/, 'https'))
-			else
-				[feed]
-			end
+    def return_data feed
+    	if feed.count > 1 || feed.empty?
+        feed
+      else
+      	create_feed feed
+      end
+    end
+
+    def create_feed feed
+    	feed = feed.flatten(depth(feed)) if feed.is_a? Array
+    	Feed.where(feed_url: feed.first).first_or_create(feed_url: feed.first)
+    end
+
+    def depth array
+		  return 0 unless a.is_a?(Array)
+		  return 1 + depth(a[0])
 		end
 
 	end
