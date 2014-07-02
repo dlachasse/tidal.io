@@ -3,7 +3,6 @@ module Api
     class FeedsController < ApplicationController
       skip_before_filter :restrict_access, only: [:show]
       before_action :grab_user, only: [:create]
-      before_action :validate_feed, only: [:create]
       respond_to :json
 
       def new
@@ -21,13 +20,9 @@ module Api
       end
 
       def create
-        if @rss.count > 1 || @rss.empty?
-          render :json => @rss.to_json
-        else
-      	  @feed = Feed.where(feed_url: @rss.first).first_or_create(feed_url: @rss.first)
-          subscribe_user
-          render :json => @feed
-        end
+        @feed = FeedParser.validate_passed_url(params[:feed_url])
+        subscribe_user if @feed.is_a? Feed
+        render :json => @feed
       end
 
       private
@@ -38,12 +33,6 @@ module Api
 
       def subscribe_user
         Subscription.create_subscription(@user.id, @feed.id) unless @feed.nil?
-      end
-
-      def validate_feed
-        @rss = []
-        feeds = FeedParser.discover_rss(params[:feed_url])
-        feeds.map { |url| @rss << url }.flatten
       end
 
       def grab_user
