@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
 
+
   namespace :api, defaults: {format: 'json'} do
     scope module: :v1, constraints: ApiConstraints.new(version: 1, default: true) do
       resources :users, except: [:index] do
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
       end
 
       get 'article/:id', to: 'articles#show', as: 'article'
+      post 'opml/create'
     end
   end
 
