@@ -34,6 +34,7 @@ gem 'uglifier', 						'>= 1.3.0'
 gem 'rails-assets-backbone'
 
 group :development do
+  gem 'seed_dump'
 	gem 'spring'
 	gem 'better_errors',			'~> 1.0.1'
 	gem 'binding_of_caller',	'~> 0.7.2'
