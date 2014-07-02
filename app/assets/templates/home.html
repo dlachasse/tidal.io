@@ -1,0 +1,14 @@
+<header role="banner">
+  <h1>Tidal!</h1>
+  <div class="user">
+    <span class="user__name">{{ user.name }}</span>
+    <span class="user__email">{{ user.email }}</span>
+  </div>
+</header>
+
+<h1>{{ message }}</h1>
+
+<div ng-repeat="feed in feeds">
+  <h2><a ui-sref="feed({ id: feed.id })">{{ feed.name }}</a></h2>
+  <small>{{ feed.url }}</small>
+</div>

@@ -7,3 +7,19 @@
 	- Create database name/host in application.yml
 	- Run `rake db:migrate` to instantiate
 - Run tests with `rspec`
+
+## Running (Locally)
+
+1. Start Postgre
+2. `redis-server /usr/local/etc/redis.confredis-server`
+3. `sidekiq`
+4. `rails s`
+
+## Requests
+
+When making requests against the API, make sure to include the following headers:
+
+```http
+Authorization: Token token=[YOUR API KEY]
+Accept: application/tidal.v1
+```

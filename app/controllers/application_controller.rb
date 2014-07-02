@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session, if: Proc.new { |c| c.request.format == 'application/tidal.v1' }
+
   before_filter :restrict_access
   before_filter :set_headers # use this only for testing, adds additional query
 

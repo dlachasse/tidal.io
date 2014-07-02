@@ -1,0 +1,19 @@
+{
+  "name": "tidal.io",
+  "version": "0.0.0",
+  "homepage": "https://github.com/dlachasse/tidal.io",
+  "authors": [
+    "Swashcap <swashcap@gmail.com>",
+    "David La Chasse <david.lachasse@gmail.com>"
+  ],
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular-sanitize": "~1.2.18",
+    "angular": "~1.2.18",
+    "angular-resource": "~1.2.18",
+    "angular-route": "~1.2.18",
+    "angular-ui-router": "~0.2.10",
+    "fastclick": "~1.0.2"
+  }
+}

@@ -10,6 +10,20 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
-//= require jquery_ujs
-//= require_tree .
+//= require vendor/fastclick/lib/fastclick.js
+//= require vendor/angular/angular.min.js
+//= require vendor/angular-resource/angular-resource.min.js
+//= require vendor/angular-route/angular-route.min.js
+//= require vendor/angular-sanitize/angular-sanitize.min.js
+//= require vendor/angular-ui-router/release/angular-ui-router.min.js
+//
+// Get all the Angular templates
+// (https://github.com/pitr/angular-rails-templates)
+//= require angular-rails-templates
+//= require_tree ../templates
+//
+//= require bootstrap.js
+//= require_tree ./constants
+//= require_tree ./config
+//= require_tree ./services
+//= require_tree ./controllers
