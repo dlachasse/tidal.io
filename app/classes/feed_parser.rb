@@ -14,9 +14,17 @@ class FeedParser
 		end
 
 		def retrieve_entries feed_url
-			fetch(feed_url)
-			load_feed(feed_url)
-			if @feedjira.entries
+			@feed_url = feed_url
+			fetch(@feed_url)
+			load_feed(@feed_url)
+			parse_entries
+		end
+
+		def parse_entries
+			if @feedjira.is_a? Fixnum
+				return "Invalid feed"
+				Rails.logger.warn "Unable to find feed at: #{@feed_url}"
+			else
 				@feedjira.entries.map { |article|	check_and_save_article article }
 				set_feed_update
 			end
