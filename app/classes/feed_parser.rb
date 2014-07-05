@@ -24,7 +24,9 @@ class FeedParser
 			if @feedjira.is_a? Fixnum
 				return "Invalid feed"
 				Rails.logger.warn "Unable to find feed at: #{@feed_url}"
+				@feed.update(active: false)
 			else
+				@feed.update(active: true) unless @feed.active == true
 				@feedjira.entries.map { |article|	check_and_save_article article }
 				set_feed_update
 			end

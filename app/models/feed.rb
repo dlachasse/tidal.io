@@ -8,7 +8,7 @@ class Feed < ActiveRecord::Base
 	has_many :articles
 
 	# CALLBACKS
-	before_save :retrieve_feed_data
+	before_create :retrieve_feed_data
 	after_create :fetch_and_save_favicon
 	after_create :pull_down_feed
 	after_create :update_last_checked
