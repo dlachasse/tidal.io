@@ -6,7 +6,7 @@ class FeedParser
 	class << self
 
 		def fetch feed_url
-			@feedjira = Feedjira::Feed.fetch_and_parse(feed_url, timeout: 15)
+			@feedjira = Feedjira::Feed.fetch_and_parse(feed_url)
 		end
 
 		def load_feed feed_url
