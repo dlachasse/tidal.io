@@ -22,9 +22,9 @@ class FeedParser
 
 		def parse_entries
 			if @feedjira.is_a? Fixnum
-				return "Invalid feed"
 				Rails.logger.warn "Unable to find feed at: #{@feed_url}"
 				@feed.update(active: false)
+				return "Invalid feed"
 			else
 				@feed.update(active: true) unless @feed.active == true
 				@feedjira.entries.map { |article|	check_and_save_article article }
@@ -91,8 +91,8 @@ class FeedParser
     end
 
     def depth array
-		  return 0 unless a.is_a?(Array)
-		  return 1 + depth(a[0])
+		  return 0 unless array.is_a?(Array)
+		  return 1 + depth(array[0])
 		end
 
 	end
