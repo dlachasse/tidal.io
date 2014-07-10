@@ -10,6 +10,8 @@ class Favicon
 	def fetch
 		fav = Flavicon.find(@feed.url)
 		set_to_feed fav unless fav.nil?
+	rescue Net::ReadTimeout
+		return
 	end
 
 	def set_to_feed favicon
