@@ -16,6 +16,7 @@ class Feed < ActiveRecord::Base
 
 	# SCOPES
 	scope :requiring_update, -> { where('last_checked < ? OR last_checked IS NULL AND active = true', 20.minutes.ago).pluck(:feed_url) }
+	scope :favicon_update, -> { where('favicon IS NULL AND url IS NOT NULL').pluck(:id) }
 
 	def pull_down_feed
 		ArticleFetcherWorker.perform_async(self.feed_url)
@@ -40,7 +41,7 @@ class Feed < ActiveRecord::Base
 	end
 
 	def self.update_favicons
-		self.all.pluck(:id).map { |id| FaviconFetcherWorker.perform_async(id) }
+		self.favicon_update.map { |id| FaviconFetcherWorker.perform_async(id) }
 	end
 
 end
