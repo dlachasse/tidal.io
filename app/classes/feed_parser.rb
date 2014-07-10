@@ -23,7 +23,7 @@ class FeedParser
 		def parse_entries
 			if @feedjira.is_a? Fixnum
 				Rails.logger.warn "Unable to find feed at: #{@feed_url}"
-				@feed.update(active: false)
+				@feed.update!(active: false)
 				return "Invalid feed"
 			else
 				@feed.update(active: true) unless @feed.active == true
