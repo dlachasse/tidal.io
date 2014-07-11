@@ -69,7 +69,7 @@ class FeedParser
 		def validate_passed_url feed_url
 			feeds = []
       url = RSSValidation.new(feed_url)
-      if url.valid?
+      if url.valid_feed_url?
       	feeds << feed_url
       else
       	url.discover_rss.map { |url| feeds << url }.flatten

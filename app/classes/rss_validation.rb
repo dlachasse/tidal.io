@@ -6,8 +6,9 @@ class RSSValidation
 	end
 
 	def discover_rss
-		if Feedbag.feed? @feed_url
-			[@feed_url]
+		feeds = Feedbag.find @feed_url
+		if feeds.length > 0
+			feeds
 		elsif @checked
 			[]
 		else
@@ -17,16 +18,11 @@ class RSSValidation
 
 	def check_https
 		@checked = true
-		feed = Feedbag.find @feed_url
-		if feed.empty?
-			@feed_url.gsub!(/http/, 'https')
-			discover_rss
-		else
-			[feed]
-		end
+		@feed_url.gsub!(/http/, 'https')
+		discover_rss
 	end
 
-	def valid?
+	def valid_feed_url?
 		Feedbag.feed? @feed_url
 	end
 
