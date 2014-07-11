@@ -35,7 +35,7 @@ ActiveRecord::Schema.define(version: 20140705223303) do
     t.datetime "last_checked"
     t.text     "favicon"
     t.string   "feed_url"
-    t.boolean  "valid"
+    t.boolean  "active"
   end
 
   create_table "subscriptions", force: true do |t|
