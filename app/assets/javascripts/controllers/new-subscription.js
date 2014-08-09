@@ -2,9 +2,9 @@
 
 angular.module('tidal')
   .controller('NewSubscriptionCtrl', ['$scope', '$http', function ($scope, $http) {
-      var API_URL = '/api/feeds/new';
+      var API_URL = '/api/feeds';
 
-      var urlPattern = /^.+\.\w{2,}$/i;
+      var urlPattern = /^.+\.\w{2,}.*$/i;
 
       var isValidURL = function (url) {
         return urlPattern.test(url)
@@ -15,15 +15,16 @@ angular.module('tidal')
       $scope.addSubscription = function (shit) {
         console.log('addSubscription() fired.', $scope.url);
 
-        if (isValidURL  ($scope.url)) {
-          // $http.get(API_URL, {
-          //   url: $scope.url
-          // }).success(function (data) {
-          //   console.log(data);
-          // }).error(function (data) {
-          //   console.log(data);
-          // });
+        if (isValidURL($scope.url)) {
+          $http.post(API_URL, {
+            feed_url: $scope.url
+          }).success(function (data) {
+            console.log(data);
+          }).error(function (data) {
+            console.log(data);
+          });
         } else {
+          console.log('Error: invalid form URL');
           /** @todo Deal with URL errors */
         }
       };
