@@ -2,5 +2,5 @@
 
 <article ng-repeat="article in articles">
   <h1>{{ article.title }}</h1>
-  <div></div>
+  <div ng-bind-html="article.body"></div>
 </article>

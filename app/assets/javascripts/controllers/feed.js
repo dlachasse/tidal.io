@@ -1,11 +1,14 @@
 'use strict';
 
 angular.module('tidal')
-  .controller('FeedCtrl', ['$scope', '$stateParams', 'article', function ($scope, $stateParams, article) {
+  .controller('FeedCtrl', ['$scope', '$stateParams', '$http', function ($scope, $stateParams, $http) {
 
-  	var feedId = $stateParams.id;
+    var feedId = $stateParams.id;
 
-  	article.get(feedId).then(function (data) {
-	  	$scope.articles = data.data;
-	  });
+    /**
+     * @todo Abstract feeds and articles into their own services.
+     */
+    $http.get('/api/feeds/' + feedId + '/articles').then(function (data) {
+      $scope.articles = data.data;
+    });
   }]);
