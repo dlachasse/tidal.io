@@ -1,21 +1,4 @@
-<header class="tidal-header" role="banner">
-  <a
-    ui-sref="home"
-    title="Tidal home"
-    class="tidal-header__home-link"
-    rel="home">Tidal</a>
-  <div class="tidal-header__user">
-    <span class="tidal-header__user__name">{{ user.name }}</span>
-    <ul class="tidal-header__user__links">
-      <li><a ui-sref="settings">Settings</a></li>
-      <li><a ui-sref="logout">Logout</a></li>
-    </ul>
-  </div>
-</header><!-- .tidal-header -->
-
-<div ng-include="'_new-subscription.html'"></div>
-
-<h1>{{ message }}</h1>
+<div ng-include="'_header.html'"></div>
 
 <div ng-repeat="feed in feeds" class="tidal-feed-micro">
   <a ui-sref="feed({ id: feed.id })">
