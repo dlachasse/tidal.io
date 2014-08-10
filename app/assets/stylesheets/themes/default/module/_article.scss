@@ -1,0 +1,254 @@
+/* ==========================================================================
+   Article
+   ========================================================================== */
+
+.article {
+  background: $white;
+  color: $gray-dark;
+  font-family: $font-family;
+}
+.article__wrapper {
+  margin: 0 auto;
+  padding: .5rem 0;
+  width: 92%;
+
+  @media #{$tidal-mq-small} {
+    padding: 1rem 0;
+    width: 80%;
+  }
+  @media #{$tidal-mq-medium} {
+    max-width: 48em;
+    //padding: 2rem 0;
+    width: 66%;
+  }
+}
+
+/* Components
+   ========================================================================== */
+
+.article__permalink {
+  color: $black;
+  display: block;
+  margin: 0 0 .5rem;
+  text-decoration: none;
+
+  &:focus,
+  &:hover {
+    &,
+    .article__permalink__display {
+      color: $orange;
+    }
+  }
+  &:active {
+    &,
+    .article__permalink__display {
+      color: $red;
+    }
+  }
+}
+.article__title {
+  font-size: 150%;
+  line-height: 1.2;
+  margin: 0 0 .5rem;
+}
+.article__permalink__display {
+  color: $gray;
+  display: block;
+  font-size: 80%;
+  height: 1.2em;
+  line-height: 1.2;
+  overflow: hidden;
+  width: 100%;
+}
+
+// Meta
+.article__meta {
+  margin: 0 0 1rem;
+}
+.article__meta__published {
+  color: $gray;
+  display: block;
+  font-size: 80%;
+  line-height: 1.2;
+}
+
+/* General Article Styles
+   ========================================================================== */
+
+.article__content {
+  a {
+    color: mix($red, $gray-dark, 75%);
+  }
+  a:visited {
+    color: mix($purple, $gray-dark, 75%);
+  }
+  a:focus,
+  a:hover {
+    color: $orange;
+  }
+  a:active {
+    color: $red;
+  }
+  blockquote {
+    border-left: thin solid $gray-light;
+    font-style: italic;
+    margin: 0 0 1em;
+    padding: 0 0 0 1em;
+
+    em,
+    i {
+      font-style: normal;
+    }
+
+    blockquote {
+      margin-left: 0;
+    }
+
+    @media #{$tidal-mq-small} {
+      margin-left: 1em;
+    }
+  }
+
+  b,
+  strong {
+    color: $black;
+  }
+
+  h1 {
+    font-size: 175%;
+    line-height: 1.1;
+    margin: 0 0 .5em;
+
+    @media #{$tidal-mq-small} {
+      font-size: 250%;
+    }
+    @media #{$tidal-mq-medium} {
+      font-size: 300%;
+    }
+  }
+  h2 {
+    font-size: 150%;
+    line-height: 1.1;
+    margin: 0 0 .5em;
+
+    @media #{$tidal-mq-small} {
+      font-size: 200%;
+    }
+  }
+  h3 {
+    font-size: 125%;
+    margin: 0 0 .5em;
+  }
+  h4 {
+    font-size: 110%;
+    margin: 0 0 .5em;
+  }
+  h5 {
+    font-size: 100%;
+    margin: 0 0 1em;
+  }
+  h6 {
+    font-size: 80%;
+    line-height: 1.2;
+    margin: 0 0 1em;
+  }
+  small {
+    color: $gray;
+    display: block;
+    font-size: 80%;
+    line-height: 1.5;
+  }
+  img {
+    height: auto;
+    max-width: 100%;
+  }
+
+  hr {
+    border-color: $gray-light;
+    border-style: solid;
+    border-width: 0 0 thin 0;
+    margin: 0 0 1rem;
+    padding: 0;
+  }
+
+  dl {
+    margin: 0 0 1em;
+  }
+  dt {
+    font-style: italic;
+    margin: 0 0 .5em;
+  }
+  dd {
+    margin: 0 0 .5em;
+    padding: 0 0 0 2em;
+  }
+
+  figure {
+    margin: 0 0 1em;
+  }
+  figcaption {
+    color: $gray;
+    display: block;
+    font-size: 80%;
+    font-style: italic;
+    line-height: 1.5;
+    margin: (.5em / .8) (1em / .8) 0 (1em / .8);
+
+    em,
+    i {
+      font-style: normal;
+    }
+  }
+
+  // Monospace garbage
+  code,
+  kbd,
+  pre,
+  samp {
+    background: mix($white, $gray, 90%);
+    border-radius: $border-radius;
+    color: mix($black, $gray, 75%);
+    font-size: 80%;
+    line-height: 1;
+    padding: .2em .4em;
+  }
+
+  pre {
+    background: $black;
+    color: mix($white, $gray, 75%);
+    line-height: 1.5;
+    margin: 0 0 (1em / 0.8);
+    padding: (0.5em / 0.8);
+
+    @media #{$tidal-mq-small} {
+      //margin-right: (2em / 0.8);
+      //margin-left: (2em / 0.8);
+      padding: (1em / 0.8);
+    }
+
+    code,
+    kbd,
+    samp {
+      background: none;
+      border-radius: 0;
+      color: inherit;
+      font-size: 100%;
+      line-height: inherit;
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+  p {
+    margin: 0 0 1em;
+  }
+
+  ol,
+  ul {
+    margin: 0 0 1em;
+    padding: 0 0 0 2em;
+  }
+  li {
+    margin: 0 0 .5em
+  }
+}

@@ -2,7 +2,17 @@
 
 <h1>{{ name }}</h1>
 
-<article ng-repeat="article in articles">
-  <h1>{{ article.title }}</h1>
-  <div ng-bind-html="article.body"></div>
+<article ng-repeat="article in articles" class="article">
+  <div class="article__wrapper">
+    <header>
+      <a href="{{ article.permalink }}" class="article__permalink" rel="bookmark">
+        <h1 class="article__title">{{ article.title }}</h1>
+        <span class="article__permalink__display">{{ article.permalink }}</span>
+      </a>
+      <div class="article__meta">
+        <time datetime="{{ article.published }}" class="article__meta__published">{{ article.published }}</time>
+      </div>
+    </header>
+    <div ng-bind-html="article.body" class="article__content"></div>
+  </div>
 </article>

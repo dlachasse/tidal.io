@@ -11,4 +11,9 @@
  * file per style scope.
  *
  *= require tidal/_tidal.scss
+ *
+ * TODO: The default theme is hard-coded. Figure out how to change
+ *   themes and store them in the user's settings.
+ *
+ *= require themes/default/_default.scss
  */

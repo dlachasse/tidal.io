@@ -1,0 +1,30 @@
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+
+/* Colors
+   ========================================================================== */
+
+$white:      #f1f2f0;
+$gray-light: #d8d9d0;
+$gray:       #a6907c;
+$gray-dark:  #594539;
+$black:      #0d0000;
+
+$red:        #cf2222;
+$orange:     #f06a00;
+
+$purple:     #5e52bf;
+
+/* Media Queries
+   ========================================================================== */
+
+$tidal-mq-small:  "only screen and (min-width: 36em)" !default;
+$tidal-mq-medium: "only screen and (min-width: 48em)" !default;
+$tidal-mq-large:  "only screen and (min-width: 56em)" !default;
+
+/* Misc.
+   ========================================================================== */
+
+$border-radius: 1px;
+$font-family: "Open Sans", "Helvetica Neue", "Arial", sans-serif;
