@@ -1,0 +1,34 @@
+/* ==========================================================================
+   New Subscription
+   ========================================================================== */
+
+.tidal-new-subscription {
+  background: $tidal-gray;
+  border-radius: $tidal-border-radius;
+  color: $tidal-white;
+  padding: 1em;
+
+  position: relative;
+
+  label {
+    @include tidal-uppercase;
+
+    color: mix($tidal-gray, $tidal-white);
+    display: block;
+    font-size: 75%;
+    margin: 0 0 .667em;
+  }
+  input {
+    display: block;
+    margin: 0 0 .5em;
+    width: 100%;
+  }
+  br {
+    display: none;
+  }
+  .tidal-button {
+    background: mix($tidal-gray, $tidal-white);
+    display: block;
+    width: 100%;
+  }
+}

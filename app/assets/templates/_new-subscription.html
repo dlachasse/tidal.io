@@ -1,7 +1,7 @@
 <div ng-controller="NewSubscriptionCtrl">
-  <form name="newSubscription" novalidate>
+  <form name="newSubscription" novalidate class="tidal-new-subscription">
     <label for="subscription-add">Enter a site or feed URL:</label>
     <input ng-model="url" type="url" name="url" id="subscription-add" placeholder="Ex: nytimes.com" required ignore-type><br />
-    <button ng-click="addSubscription()" type="submit" class="button">Add Subscription</button>
+    <button ng-click="addSubscription()" type="submit" class="tidal-button">Add Subscription</button>
   </form>
 </div>

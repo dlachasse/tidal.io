@@ -1,0 +1,28 @@
+/* ==========================================================================
+   Button
+   ========================================================================== */
+
+.tidal-button {
+  background: $tidal-gray;
+  border: none;
+  border-radius: $tidal-border-radius;
+  color: $tidal-white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 100%;
+  line-height: inherit;
+  padding: .5em .75em;
+  text-align: center;
+
+  @media #{$tidal-mq-small} {
+    padding: .25em .5em;
+  }
+
+  &:focus,
+  &:hover {
+    background: $tidal-red;
+  }
+  &:active {
+    background: darken($tidal-red, 10%);
+  }
+}
