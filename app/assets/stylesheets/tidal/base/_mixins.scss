@@ -1,0 +1,29 @@
+/* ==========================================================================
+   Mixins
+   ========================================================================== */
+
+/**
+ * Clearfix.
+ *
+ * Clear floats. Taken from H5BP.
+ */
+@mixin tidal-clearfix {
+  &:before,
+  &:after {
+    content: " ";
+    display: table;
+  }
+  &:after {
+    clear: both;
+  }
+}
+
+/**
+ * Uppercase.
+ *
+ * A uniform uppercase with letter spacing.
+ */
+@mixin tidal-uppercase {
+  letter-spacing: .1ex;
+  text-transform: uppercase;
+}

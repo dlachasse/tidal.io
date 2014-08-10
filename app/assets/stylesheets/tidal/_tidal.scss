@@ -1,0 +1,13 @@
+/**
+ * Tidal Stylesheets.
+ *
+ * These are the core stylesheets for the application UI. This file
+ * bootstraps the styles by loading things in the proper order.
+ *
+ * Everything -- class names, variables, mixins -- is namespaced with
+ * the name of the application, "tidal."
+ */
+
+@import "base/variables";
+@import "base/mixins";
+@import "base/defaults";

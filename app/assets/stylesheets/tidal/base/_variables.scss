@@ -1,0 +1,29 @@
+/* ==========================================================================
+   Variables
+   ========================================================================== */
+
+/* Colors
+   ========================================================================== */
+
+$tidal-white:  #ffffff;
+$tidal-gray:   #334c5c;
+
+$tidal-green:  #45b29d;
+$tidal-yellow: #efc94c;
+$tidal-orange: #e27a3f;
+$tidal-red:    #df4949;
+
+/* Media Queries
+   ========================================================================== */
+
+$tidal-mq-small:  "only screen and (min-width: 36em)";
+$tidal-mq-medium: "only screen and (min-width: 48em)";
+$tidal-mq-large:  "only screen and (min-width: 56em)";
+
+$tidal-mq-retina: "print, (-o-min-device-pixel-ratio: 5/4), (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 120dpi)";
+
+/* Misc
+   ========================================================================== */
+
+$tidal-font-family:   "Avenir Next", sans-serif;
+$tidal-border-radius: 6px;
