@@ -30,5 +30,13 @@
     background: mix($tidal-gray, $tidal-white);
     display: block;
     width: 100%;
+
+    &:focus,
+    &:hover {
+      background: $tidal-red;
+    }
+    &:active {
+      background: darken($tidal-red, 10%);
+    }
   }
 }
