@@ -1,0 +1,36 @@
+/* ==========================================================================
+   Feed Micro
+   ========================================================================== */
+
+.tidal-feed-micro {
+  a {
+    background: $tidal-gray;
+    border-radius: $tidal-border-radius;
+    color: $tidal-white;
+    display: block;
+    padding: .5em .75em;
+    text-decoration: none;
+
+    @media #{$tidal-mq-small} {
+      padding: .25em .5em;
+    }
+
+    &:focus,
+    &:hover {
+      background: $tidal-red;
+    }
+    &:active {
+      background: darken($tidal-red, 10%);
+    }
+  }
+}
+.tidal-feed-micro__name {
+  font-size: 100%;
+  font-weight: 700;
+  margin: 0;
+}
+.tidal-feed-micro__url {
+  display: block;
+  font-size: 75%;
+  opacity: .5;
+}
