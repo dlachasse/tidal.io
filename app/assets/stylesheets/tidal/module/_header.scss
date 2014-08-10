@@ -1,0 +1,101 @@
+/* ==========================================================================
+   Header
+   ========================================================================== */
+
+.tidal-header {
+  @include tidal-clearfix;
+
+  background: $tidal-gray;
+  color: $tidal-white;
+}
+.tidal-header__home-link {
+  @include tidal-uppercase;
+
+  color: $tidal-white;
+  display: inline-block;
+  float: left;
+  padding: .5em .75em;
+  text-decoration: none;
+
+  @media #{$tidal-mq-small} {
+    padding: .25em .5em;
+  }
+}
+
+/* User
+   ========================================================================== */
+
+.tidal-header__user {
+  float: right;
+  position: relative;
+  z-index: 2;
+
+  &:focus,
+  &:hover {
+    .tidal-header__user__links {
+      visibility: visible;
+    }
+  }
+}
+.tidal-header__user__name {
+  color: mix($tidal-white, $tidal-gray, 75%);
+  cursor: pointer;
+  display: block;
+  padding: .5em .75em .5em 0;
+
+  @media #{$tidal-mq-small} {
+    padding: .25em .5em .25em 0;
+  }
+
+  &:after {
+    border-color: mix($tidal-white, $tidal-gray) transparent transparent transparent;
+    border-style: solid;
+    border-width: .333em .333em 0 .333em;
+    content: "";
+    display: inline-block;
+    height: 0;
+    line-height: 1;
+    margin: -.1em 0 0 .333em;
+    vertical-align: middle;
+    width: 0;
+  }
+}
+.tidal-header__user__links {
+  list-style-type: none;
+  margin: 0;
+  min-width: 10em;
+  padding: 2.4em 0 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  visibility: hidden;
+  z-index: 3;
+
+  @media #{$tidal-mq-small} {
+    padding-top: 1.9em;
+  }
+
+  li,
+  a {
+    display: block;
+    width: 100%;
+  }
+  a {
+    background: $tidal-gray;
+    color: $tidal-white;
+    cursor: pointer;
+    padding: .5em .75em;
+
+    @media #{$tidal-mq-small} {
+      padding: .25em .5em;
+    }
+
+    &:focus,
+    &:hover {
+      background: $tidal-red;
+    }
+    &:active {
+      background: darken($tidal-red, 10%);
+    }
+  }
+}
