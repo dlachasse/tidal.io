@@ -22,8 +22,9 @@ Rails.application.routes.draw do
 
   resources :sessions, only: [:create, :destroy]
   get 'login', to: 'sessions#new', as: :login
+  get 'signup', to: 'api/v1/users#new', as: :signup
 
   mount Sidekiq::Web => '/sidekiq'
 
-  root 'api/v1/users#new'
+  root 'pages#home'
 end
