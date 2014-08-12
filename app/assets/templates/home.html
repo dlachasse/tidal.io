@@ -1,8 +1,3 @@
 <div ng-include="'_header.html'"></div>
 
-<div ng-repeat="feed in feeds" class="tidal-feed-micro">
-  <a ui-sref="feed({ id: feed.id })">
-    <h2 class="tidal-feed-micro__name">{{ feed.name }}</h2>
-    <span class="tidal-feed-micro__url">{{ feed.url }}</span>
-  </a>
-</div>
+<div ng-repeat="article in articles" ng-include="'_article.html'"></div>
