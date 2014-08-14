@@ -48,16 +48,24 @@ module Scrubber
       string.strip unless string.nil?
     end
 
-    def fix_relative_links
+    def fix_relative_refs
       /(?<protocol>\w*)(?::\/\/)(?<base_url>[^\/\r\n]+)(?:\/[^\r\n]*)?/ =~ @article.url
       base_url = protocol + "://" + base_url
       doc = Nokogiri::HTML.fragment(@article.content)
-      doc.css("a").each do |link|
-        if link.attributes["href"].value =~ /\A\//
-          link.attributes["href"].value = base_url + link.attributes["href"].value
-        end
-      end
+      doc = relative_links(doc, base_url)
+
       @article.content = doc.to_html
+    end
+
+    def relative_links(nokogiri_doc, base_url)
+      links = {"a" => "href", "img" => "src"}
+      links.each_pair do |elem, attribute|
+        nokogiri_doc.css(elem).each do |link|
+          if link.attributes[attribute].value =~ /\A\//
+            link.attributes[attribute].value = base_url + link.attributes[attribute].value
+          end
+        end
+      nokogiri_doc
     end
 
   end
