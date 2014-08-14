@@ -12,7 +12,7 @@ module Scrubber
     end
 
     def validate
-      clean_content; clean_title; clean_url;
+      clean_content; clean_title; clean_url; fix_relative_links;
       @article
     end
 
@@ -46,6 +46,18 @@ module Scrubber
 
     def trim_content string
       string.strip unless string.nil?
+    end
+
+    def fix_relative_links
+      /(?<protocol>\w*)(?::\/\/)(?<base_url>[^\/\r\n]+)(?:\/[^\r\n]*)?/ =~ @article.url
+      base_url = protocol + "://" + base_url
+      doc = Nokogiri::HTML.fragment(@article.content)
+      doc.css("a").each do |link|
+        if link.attributes["href"].value =~ /\A\//
+          link.attributes["href"].value = base_url + link.attributes["href"].value
+        end
+      end
+      @article.content = doc.to_html
     end
 
   end
