@@ -1,0 +1,11 @@
+<div ng-include="'_header.html'"></div>
+
+<h1>Feeds</h1>
+
+<div ng-repeat="feed in feeds" class="tidal-feed-micro">
+  <a ui-sref="feed">
+    <img ng-src="{{ feed.favicon }}">
+    <h2 class="tidal-feed-micro__name">{{ feed.name }}</h2>
+    <span class="tidal-feed-micro__url">{{ feed.url }}</span>
+  </a>
+</div>

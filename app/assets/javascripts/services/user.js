@@ -2,11 +2,19 @@
 
 angular.module('tidal')
   .factory('user', [function () {
-    var user = window.current_user;
+    var id = 0;
+    var name = '';
+    var email = '';
+
+    if (typeof window.current_user !== 'undefined') {
+      id = window.current_user.id;
+      name = window.current_user.name;
+      email = window.current_user.email;
+    }
 
     return {
-      id: user.id,
-      name: user.name,
-      email: user.email
+      'id': id,
+      'name': name,
+      'email': email,
     };
   }]);

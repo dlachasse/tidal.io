@@ -5,10 +5,12 @@ angular.module('tidal')
 
     var feedId = $stateParams.id;
 
-    /**
-     * @todo Abstract feeds and articles into their own services.
-     */
-    $http.get('/api/feeds/' + feedId + '/articles').then(function (data) {
-      $scope.articles = data.data;
-    });
+    if (feedId !== 'undefined') {
+      /**
+       * @todo Abstract feeds and articles into their own services.
+       */
+      $http.get('/api/feeds/' + feedId + '/articles').then(function (data) {
+        $scope.articles = data.data;
+      });
+    }
   }]);
