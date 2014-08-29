@@ -35,13 +35,14 @@ gem 'uglifier',                 '>= 1.3.0'
 group :development do
   gem 'seed_dump'
 	gem 'spring'
-	gem 'better_errors',			'~> 1.0.1'
-	gem 'binding_of_caller',	'~> 0.7.2'
-  gem 'meta_request',				'0.3.0'
-  gem 'guard-rspec', 				'~> 4.2.1'
-  gem 'guard-spork', 				'~> 1.5.1'
-  gem 'rb-fsevent',  				'~> 0.9.3'
-  gem 'spork-rails', 				github: 'sporkrb/spork-rails'
+  gem 'meta_request',       '0.3.0'
+  gem 'pry-rails',          '0.3.2'
+  gem 'better_errors',      '~> 1.0.1'
+  gem 'binding_of_caller',  '~> 0.7.2'
+  gem 'guard-rspec',        '~> 4.2.1'
+  gem 'guard-spork',        '~> 1.5.1'
+  gem 'rb-fsevent',         '~> 0.9.3'
+  gem 'spork-rails',        github: 'sporkrb/spork-rails'
 end
 
 group :test do
