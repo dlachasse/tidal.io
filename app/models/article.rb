@@ -10,4 +10,8 @@ class Article < ActiveRecord::Base
 	scope :newest, -> { order(published: :desc) }
 	scope :batch,  -> (count) { limit(count) }
 	scope :start,  -> (start) { offset(start) }
+
+	# ALIAII?
+	alias_attribute :content, :body
+	alias_attribute :url, :permalink
 end
