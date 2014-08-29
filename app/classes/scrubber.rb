@@ -4,7 +4,6 @@ module Scrubber
 
   class Article
     include HTML
-    attr_accessor :article
 
     def initialize article
     	@article = article
@@ -12,11 +11,16 @@ module Scrubber
     end
 
     def validate
-      clean_content; clean_title; clean_url; fix_relative_links;
+      clean_content; clean_title; clean_permalink; fix_relative_refs;
       @article
     end
 
+    def body
+      @article.content
+    end
+
     def consolidate_content
+      return @article.content unless @article.respond_to?(:content)
       @article.content = "" if @article.content.nil?
       @article.summary = "" if @article.summary.nil?
       @article.content && @article.summary ? return_longest : @article.content
@@ -40,7 +44,7 @@ module Scrubber
       @article.title = trim_content @article.title
     end
 
-    def clean_url
+    def clean_permalink
       @article.url = trim_content @article.url
     end
 
@@ -48,23 +52,32 @@ module Scrubber
       string.strip unless string.nil?
     end
 
-    def fix_relative_refs
-      /(?<protocol>\w*)(?::\/\/)(?<base_url>[^\/\r\n]+)(?:\/[^\r\n]*)?/ =~ @article.url
-      base_url = protocol + "://" + base_url
-      doc = Nokogiri::HTML.fragment(@article.content)
-      doc = relative_links(doc, base_url)
+    def prepend_permalink
+      Feed.find(@article.feed_id).select(:url)
+    end
 
-      @article.content = doc.to_html
+    def fix_relative_refs
+      if /(?<protocol>\w*)(?::\/\/)(?<base_url>[^\/\r\n]+)(?:\/[^\r\n]*)?/ =~ @article.url
+        base_url = protocol + "://" + base_url
+        doc = Nokogiri::HTML.fragment(@article.content)
+        doc = relative_links(doc, base_url)
+
+        @article.content = doc.to_html
+      elsif @article.url =~ /^(\/\/|\/)/
+        prepend_permalink + @article.url
+        fix_relative_refs
+      end
     end
 
     def relative_links(nokogiri_doc, base_url)
       links = {"a" => "href", "img" => "src"}
       links.each_pair do |elem, attribute|
         nokogiri_doc.css(elem).each do |link|
-          if link.attributes[attribute].value =~ /\A\//
+          if link.attributes[attribute].respond_to?(:value) && link.attributes[attribute].value =~ /\A\//
             link.attributes[attribute].value = base_url + link.attributes[attribute].value
           end
         end
+      end
       nokogiri_doc
     end
 
@@ -84,7 +97,6 @@ module Scrubber
 
     def clean_title
       if @feedjira.title
-        p "#{@feedjira.title}"
         @feedjira.title = @feedjira.title.strip
       end
     end
