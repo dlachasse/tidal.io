@@ -19,7 +19,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :sessions, only: [:create, :destroy]
+  post 'sessions', to: 'sessions#create'
+  post 'logout', to: 'sessions#destroy', as: :logout
   get 'login', to: 'sessions#new', as: :login
   get 'signup', to: 'api/v1/users#new', as: :signup
 
