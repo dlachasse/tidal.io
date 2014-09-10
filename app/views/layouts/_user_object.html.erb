@@ -1,5 +1,5 @@
-<script type="text/javascript">
-	window.current_user = <% if current_user %>
-		<%= current_user.to_json(:only => [:id, :name, :email, :api_key]).html_safe %>
-	<% end %>
-</script>
+<% if current_user %>
+	<script type="text/javascript">
+		window.current_user = <%= current_user.to_json(:only => [:id, :name, :email, :api_key]).html_safe %>
+	</script>
+<% end %>
