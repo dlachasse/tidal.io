@@ -35,7 +35,7 @@ gem 'uglifier',                 '>= 1.3.0'
 group :development do
   gem 'seed_dump'
 	gem 'spring'
-  gem 'meta_request',       '0.3.0'
+  gem 'meta_request',       '0.3.4'
   gem 'pry-rails',          '0.3.2'
   gem 'better_errors',      '~> 1.0.1'
   gem 'binding_of_caller',  '~> 0.7.2'
