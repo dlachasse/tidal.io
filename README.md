@@ -7,6 +7,7 @@
 	- Create database name/host in application.yml
 	- Run `rake db:migrate` to instantiate
 - Run tests with `rspec`
+- To regenerate assets run `rake assets:clobber && rake assets:precompile`
 
 ## Running (Locally)
 
