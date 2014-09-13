@@ -36,10 +36,6 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 1.1)
     addressable (2.3.6)
-    angular-rails-templates (0.1.2)
-      railties (>= 3.1)
-      sprockets
-      tilt
     arel (5.0.1.20140414130214)
     autoprefixer-rails (1.1.20140429)
       execjs
@@ -116,6 +112,7 @@ GEM
       spork (>= 0.8.4)
     hike (1.2.3)
     hpricot (0.8.6)
+    htmlcompressor (0.1.2)
     i18n (0.6.9)
     jbuilder (2.0.6)
       activesupport (>= 3.0.0, < 5)
@@ -305,7 +302,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  angular-rails-templates (~> 0.1.2)
   autoprefixer-rails (= 1.1.20140429)
   better_errors (~> 1.0.1)
   binding_of_caller (~> 0.7.2)
@@ -321,6 +317,7 @@ DEPENDENCIES
   flavicon (= 0.1.0)
   guard-rspec (~> 4.2.1)
   guard-spork (~> 1.5.1)
+  htmlcompressor (~> 0.1.2)
   jbuilder (~> 2.0)
   jquery-rails (~> 3.1.0)
   launchy (~> 2.4.2)

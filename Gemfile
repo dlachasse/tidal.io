@@ -26,10 +26,10 @@ gem 'cancancan',            '~> 1.7'
 
 # Assets
 gem 'autoprefixer-rails',       '1.1.20140429'
-gem 'angular-rails-templates',  '~> 0.1.2'
 gem 'jbuilder',                 '~> 2.0'
 gem 'sass-rails',               '~> 4.0.3'
 gem 'jquery-rails',             '~> 3.1.0'
+gem 'htmlcompressor',           '~> 0.1.2'
 gem 'uglifier',                 '>= 1.3.0'
 
 group :development do
