@@ -3,16 +3,16 @@
 // This file loads the application's scripts in the appropriate order
 // and bootstraps the thing.
 //
-//= require angular
-//= require angular-sanitize
-//= require angular-ui-router
+//= require_self
+//= require_tree .
+//
 
 'use strict';
 
 angular.module('tidal', [
   'ngSanitize',
-  'ui.router'
-  //'templates'
+  'ui.router',
+  'templates'
 ])
   .config(function ($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

@@ -11,7 +11,10 @@
 // about supported directives.
 //
 //= require lodash
-//= require ../templates/templates-complete.js.erb
+//= require angular
+//= require angular-sanitize
+//= require angular-ui-router
+//= require ../templates/templates.js.erb
 //
 //= require tidal/tidal.js
 //
