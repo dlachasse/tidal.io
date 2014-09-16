@@ -1,0 +1,5 @@
+<div ng-include="'navigation.html'"></div>
+
+<div ng-repeat="article in articles" ng-include="'article.html'"></div>
+
+<button ng-click="loadArticles(start)" class="tidal-button">Load more&hellip;</button>

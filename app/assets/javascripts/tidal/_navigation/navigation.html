@@ -1,0 +1,23 @@
+<div ng-controller="NavigationCtrl">
+  <header class="tidal-header" role="banner">
+    <a
+      ui-sref="home"
+      title="Tidal home"
+      class="tidal-header__home-link"
+      rel="home">Tidal</a>
+    <div class="tidal-header__user">
+      <span class="tidal-header__user__name">{{ user.name }}</span>
+      <ul class="tidal-header__user__links">
+        <li><a ui-sref="feeds">Feeds</a></li>
+        <li><a ui-sref="settings">Settings</a></li>
+        <li><a ui-sref="logout">Logout</a></li>
+      </ul>
+    </div>
+  </header><!-- .tidal-header -->
+
+  <form name="newSubscription" novalidate class="tidal-new-subscription">
+    <label for="subscription-add">Enter a site or feed URL:</label>
+    <input ng-model="url" type="url" name="url" id="subscription-add" placeholder="Ex: nytimes.com" required ignore-type><br />
+    <button ng-click="addSubscription()" type="submit" class="tidal-button">Add Subscription</button>
+  </form>
+</div>

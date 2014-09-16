@@ -10,17 +10,8 @@
 // Read Sprockets README (https://github.com/sstephenson/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require vendor/fastclick.js
-//= require vendor/angular.min.js
-//= require vendor/angular-resource.min.js
-//= require vendor/angular-route.min.js
-//= require vendor/angular-sanitize.min.js
-//= require vendor/angular-ui-router.min.js
-//
+//= require lodash
 //= require ../templates/templates-complete.js.erb
 //
-//= require bootstrap.js
-//= require_tree ./constants
-//= require_tree ./config
-//= require_tree ./services
-//= require_tree ./controllers
+//= require tidal/tidal.js
+//
