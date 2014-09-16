@@ -28,7 +28,7 @@ angular.module('tidal')
         /** @todo Deal with URL errors */
       }
     };
-  }]);
+  })
 
   /**
    * @todo Move this directive into a separate file.
