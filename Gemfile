@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 ruby '2.1.1'
+source 'https://rails-assets.org'
 
 # Core
 gem 'rails',                '4.1.0'
@@ -31,6 +32,13 @@ gem 'sass-rails',               '~> 4.0.3'
 gem 'jquery-rails',             '~> 3.1.0'
 gem 'htmlcompressor',           '~> 0.1.2'
 gem 'uglifier',                 '>= 1.3.0'
+
+# Use Rails Assets to manage front end packages
+# https://rails-assets.org/
+gem 'rails-assets-lodash'
+gem 'rails-assets-angular',              '~> 1.2.0'
+gem 'rails-assets-angular-sanitize'
+gem 'rails-assets-angular-ui-router',    '~> 0.2.11'
 
 group :development do
   gem 'seed_dump'

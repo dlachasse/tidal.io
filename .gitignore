@@ -22,9 +22,5 @@ log/
 coverage/*
 /public/assets/*
 
-
-# Ingnore vendor scripts installed by Bower
-/app/assets/javascripts/vendor/*
-
 # Forget these OS X directory settings
 .DS_Store
