@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tidal')
-  .controller('HomeCtrl', ['$scope', 'user', '$http', function ($scope, user, $http) {
+  .controller('HomeCtrl', function ($scope, $http, user) {
     var ARTICLE_COUNT = 10;
 
     var getArticlesUrl = function (count, start) {
@@ -24,7 +24,6 @@ angular.module('tidal')
       }
     };
 
-    $scope.user = user;
     $scope.start = 0;
 
     $scope.loadArticles = function (start) {
@@ -41,4 +40,4 @@ angular.module('tidal')
         $scope.articles = data.data;
         $scope.start = $scope.articles.length;
       });
-  }]);
+  });

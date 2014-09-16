@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('tidal')
-  .controller('NavigationCtrl', function ($scope, $http) {
+  .controller('NavigationCtrl', function ($scope, user, $http) {
     var API_URL = '/api/feeds';
 
     var urlPattern = /^.+\.\w{2,}.*$/i;
@@ -9,6 +9,8 @@ angular.module('tidal')
     var isValidURL = function (url) {
       return urlPattern.test(url)
     };
+
+    $scope.user = user;
 
     $scope.url = '';
 
