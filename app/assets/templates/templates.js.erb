@@ -1,0 +1,14 @@
+<% environment.context_class.instance_eval { include ActionView::Helpers::JavaScriptHelper } %>
+<% environment.context_class.instance_eval { include HtmlCompressor } %>
+<% files = Rails.application.assets.each_file.select { |file| file.to_s.end_with?('.html') } %>
+<% compressor = HtmlCompressor::Compressor.new %>
+
+angular.module('templates', [])
+  .run(['$templateCache', function($templateCache) {
+    <% files.each do |html| %>
+      $templateCache.put(
+        '<%= html.basename %>',
+        '<%= compressor.compress(escape_javascript(File.read(html))) %>'
+      );
+    <% end %>
+  }]);
