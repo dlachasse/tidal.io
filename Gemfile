@@ -1,12 +1,14 @@
 source 'https://rubygems.org'
-ruby '2.1.1'
+# ruby '2.1.1'
 
 # Core
 gem 'rails',                '4.1.0'
 gem 'pg',                   '~> 0.17.1'
+gem 'unicorn-rails',				'2.2.0'
 gem 'sinatra',              '>= 1.3.0', :require => nil
 gem 'flavicon',             '0.1.0'
 gem 'will_paginate',        '~> 3.0'
+gem 'therubyracer'
 
 # Scheduling/Queuing
 gem 'whenever',             '0.9.2'
@@ -41,7 +43,7 @@ group :development do
   gem 'guard-rspec', 				'~> 4.2.1'
   gem 'guard-spork', 				'~> 1.5.1'
   gem 'rb-fsevent',  				'~> 0.9.3'
-  gem 'spork-rails', 				github: 'sporkrb/spork-rails'
+  # gem 'spork-rails', 				:github => 'sporkrb/spork-rails'
 end
 
 group :test do
@@ -56,7 +58,7 @@ group :test do
   gem 'database_cleaner',   '~> 1.2.0'
   gem 'launchy',            '~> 2.4.2'
   gem 'selenium-webdriver', '~> 2.39.0'
-  gem 'simplecov',          '~> 0.7.1', require: false
+  gem 'simplecov',          '~> 0.7.1', :require => false
 end
 
 group :doc do
