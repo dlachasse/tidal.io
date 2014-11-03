@@ -24,3 +24,7 @@ coverage/*
 
 # Forget these OS X directory settings
 .DS_Store
+# Berksfile
+.vagrant
+/cookbooks
+/app/assets/javascripts/vendor/*
