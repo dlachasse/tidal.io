@@ -24,10 +24,4 @@ coverage/*
 # Berksfile
 .vagrant
 /cookbooks
-Berksfile.lock
-
-<<<<<<< HEAD
-=======
-# Ingnore vendor scripts installed by Bower
->>>>>>> front-end
 /app/assets/javascripts/vendor/*
