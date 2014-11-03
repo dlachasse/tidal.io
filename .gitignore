@@ -21,6 +21,11 @@ log/
 /config/database.yml
 coverage/*
 
+# Berksfile
+.vagrant
+/cookbooks
+Berksfile.lock
+
 <<<<<<< HEAD
 =======
 # Ingnore vendor scripts installed by Bower
