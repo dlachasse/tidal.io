@@ -58,3 +58,5 @@ Now you can go ahead and have Rails create and migrate your database then serve 
 rake db:create db:migrate
 rails s
 ```
+
+The application show now be accessible via http://0.0.0.0:3000/
